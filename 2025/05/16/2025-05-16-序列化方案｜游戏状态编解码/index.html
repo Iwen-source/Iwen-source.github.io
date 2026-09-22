@@ -27,16 +27,20 @@
 <meta property="og:description" content="今天实现游戏状态的序列化&#x2F;反序列化——每帧要广播的状态数据怎么高效编码。 状态结构（服务器权威模型的核心数据）： 12345678910111213141516typedef struct {    float x, y;          &#x2F;&#x2F; 位置    float angle;         &#x2F;&#x2F; 朝向    float hp;            &#x2F;&#x2F; 生命    uint8_t al">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-16T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-22T15:11:45.804Z">
+<meta property="article:modified_time" content="2026-09-22T15:27:47.192Z">
 <meta property="article:author" content="JeremyWard(董雨飞)">
 <meta property="article:tag" content="C">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Socket">
+<meta property="article:tag" content="TCP&#x2F;IP">
 <meta property="article:tag" content="多人联机对战">
+<meta property="article:tag" content="多线程">
 <meta property="article:tag" content="开发日志">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="序列化方案｜游戏状态编解码">
   
   
-  <meta name="keywords" content="开发日志,多人联机对战,C,Socket">
+  <meta name="keywords" content="开发日志,Linux,多人联机对战,C,Socket,TCP/IP,多线程,网络编程">
 
   <!-- feed -->
   
@@ -49,7 +53,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-05-16T20:00:00+08:00","dateModified":"2026-09-22T23:11:45+08:00","datePublished":"2025-05-16T20:00:00+08:00","description":"今天实现游戏状态的序列化/反序列化——每帧要广播的状态数据怎么高效编码。\n状态结构（服务器权威模型的核心数据）：\n12345678910111213141516typedef struct {    float x, y;          // 位置    float angle;         // 朝向    float hp;            // 生命    uint8_t...","headline":"序列化方案｜游戏状态编解码","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/05/16/2025-05-16-%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E6%A1%88%EF%BD%9C%E6%B8%B8%E6%88%8F%E7%8A%B6%E6%80%81%E7%BC%96%E8%A7%A3%E7%A0%81/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/05/16/2025-05-16-%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E6%A1%88%EF%BD%9C%E6%B8%B8%E6%88%8F%E7%8A%B6%E6%80%81%E7%BC%96%E8%A7%A3%E7%A0%81/","keywords":"开发日志, 多人联机对战, C, Socket","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-05-16T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-05-16T20:00:00+08:00","description":"今天实现游戏状态的序列化/反序列化——每帧要广播的状态数据怎么高效编码。\n状态结构（服务器权威模型的核心数据）：\n12345678910111213141516typedef struct {    float x, y;          // 位置    float angle;         // 朝向    float hp;            // 生命    uint8_t...","headline":"序列化方案｜游戏状态编解码","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/05/16/2025-05-16-%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E6%A1%88%EF%BD%9C%E6%B8%B8%E6%88%8F%E7%8A%B6%E6%80%81%E7%BC%96%E8%A7%A3%E7%A0%81/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/05/16/2025-05-16-%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E6%A1%88%EF%BD%9C%E6%B8%B8%E6%88%8F%E7%8A%B6%E6%80%81%E7%BC%96%E8%A7%A3%E7%A0%81/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -77,7 +81,112 @@
 <svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="leftbar-active-icon-grad" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
 <div class="nav-area">
 
+<nav class="menu dis-select">
+<div class="ui-collection" data-layout="list" data-variant="nav" data-density="auto">
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight is-active is-themed" href="/" title="主页" aria-current="page" style="--item-theme:#1BCDFC;--item-grad:url(#menu-grad-post);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">主页</span>
+      
+      
+    </span>
+  
+  
+  <span class="ui-collection__indicator"></span>
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-post" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
 
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/archives/" title="归档" style="--item-theme:#8B5CF6;--item-grad:url(#menu-grad-archive);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="currentColor"><path d="M6.94028 2C7.35614 2 7.69326 2.32421 7.69326 2.72414V4.18487C8.36117 4.17241 9.10983 4.17241 9.95219 4.17241H13.9681C14.8104 4.17241 15.5591 4.17241 16.227 4.18487V2.72414C16.227 2.32421 16.5641 2 16.98 2C17.3958 2 17.733 2.32421 17.733 2.72414V4.24894C19.178 4.36022 20.1267 4.63333 20.8236 5.30359C21.5206 5.97385 21.8046 6.88616 21.9203 8.27586L22 9H2.92456H2V8.27586C2.11571 6.88616 2.3997 5.97385 3.09665 5.30359C3.79361 4.63333 4.74226 4.36022 6.1873 4.24894V2.72414C6.1873 2.32421 6.52442 2 6.94028 2Z"/><path d="M21.9995 14.0001V12.0001C21.9995 11.161 21.9963 9.66527 21.9834 9H2.00917C1.99626 9.66527 1.99953 11.161 1.99953 12.0001V14.0001C1.99953 17.7713 1.99953 19.6569 3.1711 20.8285C4.34267 22.0001 6.22829 22.0001 9.99953 22.0001H13.9995C17.7708 22.0001 19.6564 22.0001 20.828 20.8285C21.9995 19.6569 21.9995 17.7713 21.9995 14.0001Z" opacity=".5"/><path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17C16 16.4477 16.4477 16 17 16C17.5523 16 18 16.4477 18 17Z"/><path d="M18 13C18 13.5523 17.5523 14 17 14C16.4477 14 16 13.5523 16 13C16 12.4477 16.4477 12 17 12C17.5523 12 18 12.4477 18 13Z"/><path d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z"/><path d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z"/><path d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z"/><path d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z"/></g></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">归档</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-archive" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/categories/" title="分类" style="--item-theme:#F59E0B;--item-grad:url(#menu-grad-category);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="currentColor"><path d="M2 6.94975C2 6.06722 2 5.62595 2.06935 5.25839C2.37464 3.64031 3.64031 2.37464 5.25839 2.06935C5.62595 2 6.06722 2 6.94975 2C7.33642 2 7.52976 2 7.71557 2.01738C8.51665 2.09229 9.27652 2.40704 9.89594 2.92051C10.0396 3.03961 10.1763 3.17633 10.4497 3.44975L11 4C11.8158 4.81578 12.2237 5.22367 12.7121 5.49543C12.9804 5.64471 13.2651 5.7626 13.5604 5.84678C14.0979 6 14.6747 6 15.8284 6H16.2021C18.8345 6 20.1506 6 21.0062 6.76946C21.0849 6.84024 21.1598 6.91514 21.2305 6.99383C22 7.84935 22 9.16554 22 11.7979V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V6.94975Z" opacity=".5"/><path d="M20 6.23751C19.9992 5.94016 19.9949 5.76263 19.9746 5.60842C19.7974 4.26222 18.7381 3.2029 17.3919 3.02567C17.1969 3 16.9647 3 16.5003 3H9.98828C10.1042 3.10392 10.2347 3.23445 10.45 3.44975L11.0003 4C11.8161 4.81578 12.2239 5.22367 12.7124 5.49543C12.9807 5.64471 13.2653 5.7626 13.5606 5.84678C14.0982 6 14.675 6 15.8287 6H16.2024C17.9814 6 19.1593 6 20 6.23751Z"/><path fill-rule="evenodd" d="M12.25 10C12.25 9.58579 12.5858 9.25 13 9.25H18C18.4142 9.25 18.75 9.58579 18.75 10C18.75 10.4142 18.4142 10.75 18 10.75H13C12.5858 10.75 12.25 10.4142 12.25 10Z" clip-rule="evenodd"/></g></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">分类</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-category" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/tags/" title="标签" style="--item-theme:#10B981;--item-grad:url(#menu-grad-tag);">
+  
+  <span class="ui-collection__leading"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M10.2009 2.27731C10.6 2.38817 10.8337 2.80158 10.7228 3.20068L5.72283 21.2007C5.61197 21.5998 5.19856 21.8334 4.79946 21.7226C4.40036 21.6117 4.16669 21.1983 4.27755 20.7992L9.27755 2.79921C9.38841 2.40011 9.80182 2.16645 10.2009 2.27731Z"/><path d="M19.2009 2.27731C19.6 2.38817 19.8337 2.80158 19.7228 3.20068L14.7228 21.2007C14.612 21.5998 14.1986 21.8334 13.7995 21.7226C13.4004 21.6117 13.1667 21.1983 13.2776 20.7992L18.2776 2.79921C18.3884 2.40011 18.8018 2.16645 19.2009 2.27731Z"/><path d="M3.25 9C3.25 8.58579 3.58579 8.25 4 8.25H22C22.4142 8.25 22.75 8.58579 22.75 9C22.75 9.41421 22.4142 9.75 22 9.75H4C3.58579 9.75 3.25 9.41421 3.25 9Z" opacity=".5"/><path d="M1.25 16C1.25 15.5858 1.58579 15.25 2 15.25H20C20.4142 15.25 20.75 15.5858 20.75 16C20.75 16.4142 20.4142 16.75 20 16.75H2C1.58579 16.75 1.25 16.4142 1.25 16Z" opacity=".5"/></g></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">标签</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-tag" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight is-themed" href="/about/" title="关于我" style="--item-theme:#F43F5E;--item-grad:url(#menu-grad-about);">
+  
+  <span class="ui-collection__leading"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="M3 10.417c0-3.198 0-4.797.378-5.335c.377-.537 1.88-1.052 4.887-2.081l.573-.196C10.405 2.268 11.188 2 12 2s1.595.268 3.162.805l.573.196c3.007 1.029 4.51 1.544 4.887 2.081C21 5.62 21 7.22 21 10.417v1.574c0 5.638-4.239 8.375-6.899 9.536C13.38 21.842 13.02 22 12 22s-1.38-.158-2.101-.473C7.239 20.365 3 17.63 3 11.991z" opacity=".5"/><path fill="currentColor" d="M14 9a2 2 0 1 1-4 0a2 2 0 0 1 4 0m-2 8c4 0 4-.895 4-2s-1.79-2-4-2s-4 .895-4 2s0 2 4 2"/></svg></span>
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">关于我</span>
+      
+      
+    </span>
+  
+  
+  
+  
+<svg class="grad-def" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="menu-grad-about" x1="75%" y1="6.7%" x2="6.7%" y2="125%"><stop offset="20%" style="stop-color:var(--item-theme-light)"/><stop offset="60%" style="stop-color:var(--item-theme)"/></linearGradient></defs></svg>
+
+</a>
+
+  
+</div>
+
+</nav>
 </div>
 
 
@@ -92,13 +201,13 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/08/08/2025-08-08-%E6%9A%91%E6%9C%9F%E6%80%BB%E7%BB%93%EF%BD%9C%E5%9B%9E%E5%BD%92%E4%B8%8E%E7%89%88%E6%9C%AC%E5%8A%A0%E5%9B%BA/" title="暑期总结｜回归与版本加固">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/17/2026-07-17-%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E4%B8%8E%E6%B8%85%E7%90%86/" title="代码整理与清理">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">暑期总结｜回归与版本加固</span>
+      <span class="ui-collection__title">代码整理与清理</span>
       
       
     </span>
@@ -110,13 +219,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/08/07/2025-08-07-%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%EF%BD%9C%E7%BD%91%E7%BB%9C%E5%B1%82%E4%B8%8E%E9%80%BB%E8%BE%91%E5%B1%82%E8%A7%A3%E8%80%A6%E6%94%B6%E5%B0%BE/" title="代码重构｜网络层与逻辑层解耦收尾">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/18/2026-07-18-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E5%A4%8D%E7%9B%98/" title="项目验收复盘">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">代码重构｜网络层与逻辑层解耦收尾</span>
+      <span class="ui-collection__title">项目验收复盘</span>
       
       
     </span>
@@ -128,13 +237,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/08/06/2025-08-06-%E7%BD%91%E7%BB%9C%E8%B0%83%E4%BC%98%EF%BD%9C%E5%B9%BF%E6%92%AD%E9%A2%91%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94/" title="网络调优｜广播频率自适应">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/16/2026-07-16-README%E4%B8%8E%E6%96%87%E6%A1%A3/" title="README与文档">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">网络调优｜广播频率自适应</span>
+      <span class="ui-collection__title">README与文档</span>
       
       
     </span>
@@ -146,13 +255,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/08/05/2025-08-05-%E5%B9%B6%E5%8F%91%E4%BC%98%E5%8C%96%EF%BD%9C%E9%94%81%E7%BB%86%E5%8C%96%E4%B8%8E%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="并发优化｜锁细化与原子操作">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/03/2026-07-03-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E6%A3%80%E6%9F%A5%E6%A3%80%E9%AA%8C%E9%A1%B5%E9%9D%A2/" title="医院前端｜检查检验页面">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">并发优化｜锁细化与原子操作</span>
+      <span class="ui-collection__title">医院前端｜检查检验页面</span>
       
       
     </span>
@@ -164,13 +273,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/08/04/2025-08-04-%E6%9A%91%E6%9C%9F%E5%BC%BA%E5%8C%96%EF%BD%9C%E6%80%A7%E8%83%BD%E4%B8%93%E9%A1%B9%E4%BC%98%E5%8C%96/" title="暑期强化｜性能专项优化">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/04/2026-07-04-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E8%8D%AF%E6%88%BF%E9%A1%B5%E9%9D%A2/" title="医院前端｜药房页面">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">暑期强化｜性能专项优化</span>
+      <span class="ui-collection__title">医院前端｜药房页面</span>
       
       
     </span>
@@ -182,13 +291,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/12/15/2025-12-15-%E6%94%B6%E5%AE%98%E6%80%BB%E7%BB%93%EF%BD%9C%E9%A1%B9%E7%9B%AE%E5%85%A8%E6%99%AF%E5%9B%9E%E9%A1%BE/" title="收官总结｜项目全景回顾">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/05/2026-07-05-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%AE%A1%E7%90%86%E5%91%98%E9%A1%B5%E9%9D%A2/" title="医院前端｜管理员页面">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">收官总结｜项目全景回顾</span>
+      <span class="ui-collection__title">医院前端｜管理员页面</span>
       
       
     </span>
@@ -200,13 +309,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/10/10/2025-10-10-%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%EF%BD%9Cv1.0%E5%AE%9A%E7%89%88/" title="最终版本发布｜v1.0定版">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/06/2026-07-06-CT%E5%89%8D%E7%AB%AF%EF%BD%9C%E5%B7%A5%E4%BD%9C%E5%8F%B0%E5%B8%83%E5%B1%80/" title="CT前端｜工作台布局">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">最终版本发布｜v1.0定版</span>
+      <span class="ui-collection__title">CT前端｜工作台布局</span>
       
       
     </span>
@@ -218,13 +327,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/11/03/2025-11-03-%E7%AB%9E%E8%B5%9B%E7%BB%93%E6%9E%9C%EF%BD%9C%E8%8D%A3%E8%8E%B7%E7%9C%81%E7%BA%A7%E5%A5%96%E9%A1%B9/" title="竞赛结果｜荣获省级奖项">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/07/2026-07-07-CT%E5%89%8D%E7%AB%AF%EF%BD%9C%E5%88%87%E7%89%87%E6%9F%A5%E7%9C%8B/" title="CT前端｜切片查看">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">竞赛结果｜荣获省级奖项</span>
+      <span class="ui-collection__title">CT前端｜切片查看</span>
       
       
     </span>
@@ -236,13 +345,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/10/09/2025-10-09-%E4%BD%9C%E5%93%81%E6%89%93%E7%A3%A8%EF%BD%9C%E8%AF%84%E5%AE%A1%E5%8F%8D%E9%A6%88%E4%BC%98%E5%8C%96/" title="作品打磨｜评审反馈优化">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/09/2026-07-09-AI%E9%9B%86%E6%88%90%EF%BD%9C%E5%B0%8F%E7%B1%B3MiMo/" title="AI集成｜小米MiMo">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">作品打磨｜评审反馈优化</span>
+      <span class="ui-collection__title">AI集成｜小米MiMo</span>
       
       
     </span>
@@ -254,13 +363,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/12/01/2025-12-01-%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98%EF%BD%9C%E7%BB%8F%E9%AA%8C%E6%95%99%E8%AE%AD%E6%B2%89%E6%B7%80/" title="项目复盘｜经验教训沉淀">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/08/2026-07-08-CT%E5%89%8D%E7%AB%AF%EF%BD%9C3D%E9%A2%84%E8%A7%88/" title="CT前端｜3D预览">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">项目复盘｜经验教训沉淀</span>
+      <span class="ui-collection__title">CT前端｜3D预览</span>
       
       
     </span>
@@ -293,7 +402,7 @@
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98/">多人联机对战</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-16T12:00:00.000Z">2025-05-16</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:11:45.804Z">2026-09-22</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-16T12:00:00.000Z">2025-05-16</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:27:47.192Z">2026-09-22</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -319,7 +428,7 @@
 <p><strong>优化点记录</strong>：状态按”增量 vs 全量”划分——常规帧全量也就 200 字节（局域网不在乎这带宽，全量更简单可靠）；<code>STATE_SNAP</code> 用于开局/重连，内容相同。今天序列化完成，游戏逻辑可以直接基于它工作了。</p>
 </article>
 
-<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>多人联机对战</a><a class="tag" href="/tags/C/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>C</a><a class="tag" href="/tags/Socket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Socket</a></div>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/Linux/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Linux</a><a class="tag" href="/tags/%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>多人联机对战</a><a class="tag" href="/tags/C/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>C</a><a class="tag" href="/tags/Socket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Socket</a><a class="tag" href="/tags/TCP-IP/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TCP&#x2F;IP</a><a class="tag" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>多线程</a><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>网络编程</a></div>
 
 <div class="article-footer slide-up">
     <section id="license">
