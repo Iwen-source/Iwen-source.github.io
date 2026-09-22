@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-08-07T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-08-07T20:00:00+08:00","description":"今天做代码重构收尾，把”网络层与逻辑层解耦”贯彻到底。\n重构目标：逻辑层（游戏状态计算）完全不依赖 socket/线程，可以独立测试、独立复用。\n现状问题：\n\ngame.c 里混着 send 调用（逻辑层直接发消息）→ 破坏分层；\nserver.c 里混着游戏状态初始化 → 职责不清；\n客户端也有类似问题（渲染层里处理网络消息）。\n\n重构方案：引入”事件/命令”抽象层。\n1234567891...","headline":"代码重构｜网络层与逻辑层解耦收尾","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/08/07/2025-08-07-%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%EF%BD%9C%E7%BD%91%E7%BB%9C%E5%B1%82%E4%B8%8E%E9%80%BB%E8%BE%91%E5%B1%82%E8%A7%A3%E8%80%A6%E6%94%B6%E5%B0%BE/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/08/07/2025-08-07-%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%EF%BD%9C%E7%BD%91%E7%BB%9C%E5%B1%82%E4%B8%8E%E9%80%BB%E8%BE%91%E5%B1%82%E8%A7%A3%E8%80%A6%E6%94%B6%E5%B0%BE/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  
+  <link rel="stylesheet" href="/css/custom-style.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -273,24 +273,6 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/04/2026-07-04-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E8%8D%AF%E6%88%BF%E9%A1%B5%E9%9D%A2/" title="医院前端｜药房页面">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">医院前端｜药房页面</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/05/2026-07-05-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%AE%A1%E7%90%86%E5%91%98%E9%A1%B5%E9%9D%A2/" title="医院前端｜管理员页面">
   
   
@@ -327,6 +309,24 @@
 
   
     
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/04/2026-07-04-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E8%8D%AF%E6%88%BF%E9%A1%B5%E9%9D%A2/" title="医院前端｜药房页面">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">医院前端｜药房页面</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/07/2026-07-07-CT%E5%89%8D%E7%AB%AF%EF%BD%9C%E5%88%87%E7%89%87%E6%9F%A5%E7%9C%8B/" title="CT前端｜切片查看">
   
   
@@ -345,13 +345,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/09/2026-07-09-AI%E9%9B%86%E6%88%90%EF%BD%9C%E5%B0%8F%E7%B1%B3MiMo/" title="AI集成｜小米MiMo">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/08/2026-07-08-CT%E5%89%8D%E7%AB%AF%EF%BD%9C3D%E9%A2%84%E8%A7%88/" title="CT前端｜3D预览">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">AI集成｜小米MiMo</span>
+      <span class="ui-collection__title">CT前端｜3D预览</span>
       
       
     </span>
@@ -363,13 +363,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/08/2026-07-08-CT%E5%89%8D%E7%AB%AF%EF%BD%9C3D%E9%A2%84%E8%A7%88/" title="CT前端｜3D预览">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/09/2026-07-09-AI%E9%9B%86%E6%88%90%EF%BD%9C%E5%B0%8F%E7%B1%B3MiMo/" title="AI集成｜小米MiMo">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">CT前端｜3D预览</span>
+      <span class="ui-collection__title">AI集成｜小米MiMo</span>
       
       
     </span>
