@@ -19,15 +19,15 @@
   <meta name="theme-color" content="#f9fafb">
   <title>AI集成｜诊断报告生成 - 董雨飞的技术博客</title>
 
-  <meta name="description" content="今天写AI报告：  根据CT影像描述生成报告草稿  医生审核修改">
+  <meta name="description" content="今天写AI报告：  根据CT影像描述生成报告草稿  医生审核修改   核心实现（真实代码，来自仓库 CT_rebuild&#x2F;backend&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bababoyi&#x2F;ctrebuild&#x2F;ai&#x2F;AiService.java） 1234567891011121314151617181920212223242526@Servicepublic class AiService {">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AI集成｜诊断报告生成">
 <meta property="og:url" content="https://iwen-source.github.io/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/">
 <meta property="og:site_name" content="董雨飞的技术博客">
-<meta property="og:description" content="今天写AI报告：  根据CT影像描述生成报告草稿  医生审核修改">
+<meta property="og:description" content="今天写AI报告：  根据CT影像描述生成报告草稿  医生审核修改   核心实现（真实代码，来自仓库 CT_rebuild&#x2F;backend&#x2F;src&#x2F;main&#x2F;java&#x2F;com&#x2F;bababoyi&#x2F;ctrebuild&#x2F;ai&#x2F;AiService.java） 1234567891011121314151617181920212223242526@Servicepublic class AiService {">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-11T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-22T15:56:24.754Z">
+<meta property="article:modified_time" content="2026-09-22T16:25:39.170Z">
 <meta property="article:author" content="JeremyWard(董雨飞)">
 <meta property="article:tag" content="AI Agent">
 <meta property="article:tag" content="Chroma">
@@ -72,7 +72,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2026-07-11T21:00:00+08:00","dateModified":"2026-09-22T23:56:24+08:00","datePublished":"2026-07-11T21:00:00+08:00","description":"今天写AI报告：\n\n根据CT影像描述生成报告草稿\n\n医生审核修改\n\n\n","headline":"AI集成｜诊断报告生成","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/","keywords":"开发日志, Vue3, AI Agent, RAG, MySQL, Redis, Function Calling, GPT, DeepSeek, 文心一言, Milvus, Chroma, Pinecone, 东软实习, SpringCloud, 智慧云脑, 大模型接入, 机器学习, Spring Cloud, Nacos, Gateway, PostgreSQL, FastAPI, TypeScript, SimpleITK, VTK, Prompt 工程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2026-07-11T21:00:00+08:00","dateModified":"2026-09-23T00:25:39+08:00","datePublished":"2026-07-11T21:00:00+08:00","description":"今天写AI报告：\n\n根据CT影像描述生成报告草稿\n\n医生审核修改\n\n\n核心实现（真实代码，来自仓库 CT_rebuild/backend/src/main/java/com/bababoyi/ctrebuild/ai/AiService.java）\n1234567891011121314151617181920212223242526@Servicepublic class AiServic...","headline":"AI集成｜诊断报告生成","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/","keywords":"开发日志, Vue3, AI Agent, RAG, MySQL, Redis, Function Calling, GPT, DeepSeek, 文心一言, Milvus, Chroma, Pinecone, 东软实习, SpringCloud, 智慧云脑, 大模型接入, 机器学习, Spring Cloud, Nacos, Gateway, PostgreSQL, FastAPI, TypeScript, SimpleITK, VTK, Prompt 工程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   <link rel="stylesheet" href="/css/custom-style.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -220,67 +220,13 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/14/2025-04-14-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%EF%BD%9CLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%BC%80%E5%8F%91%E6%9C%BA/" title="环境准备｜Linux服务器与开发机">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/15/2026-07-15-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BD%9CSwagger/" title="接口文档｜Swagger">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">环境准备｜Linux服务器与开发机</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/18/2026-07-18-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E5%A4%8D%E7%9B%98/" title="项目验收复盘">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">项目验收复盘</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/16/2026-07-16-README%E4%B8%8E%E6%96%87%E6%A1%A3/" title="README与文档">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">README与文档</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/17/2026-07-17-%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E4%B8%8E%E6%B8%85%E7%90%86/" title="代码整理与清理">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">代码整理与清理</span>
+      <span class="ui-collection__title">接口文档｜Swagger</span>
       
       
     </span>
@@ -310,24 +256,6 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/15/2026-07-15-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BD%9CSwagger/" title="接口文档｜Swagger">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">接口文档｜Swagger</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/12/2026-07-12-%E8%81%94%E8%B0%83%EF%BD%9C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%89%93%E9%80%9A/" title="联调｜前后端打通">
   
   
@@ -335,24 +263,6 @@
     <span class="ui-collection__content">
       
       <span class="ui-collection__title">联调｜前后端打通</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/13/2026-07-13-Docker%20Compose%E7%BC%96%E6%8E%92/" title="Docker Compose编排">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">Docker Compose编排</span>
       
       
     </span>
@@ -382,6 +292,24 @@
 
   
     
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/10/2026-07-10-AI%E9%9B%86%E6%88%90%EF%BD%9COllama%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B/" title="AI集成｜Ollama本地模型">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">AI集成｜Ollama本地模型</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/09/2026-07-09-AI%E9%9B%86%E6%88%90%EF%BD%9C%E5%B0%8F%E7%B1%B3MiMo/" title="AI集成｜小米MiMo">
   
   
@@ -389,6 +317,78 @@
     <span class="ui-collection__content">
       
       <span class="ui-collection__title">AI集成｜小米MiMo</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/05/2026-07-05-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%AE%A1%E7%90%86%E5%91%98%E9%A1%B5%E9%9D%A2/" title="医院前端｜管理员页面">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">医院前端｜管理员页面</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/03/2026-07-03-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E6%A3%80%E6%9F%A5%E6%A3%80%E9%AA%8C%E9%A1%B5%E9%9D%A2/" title="医院前端｜检查检验页面">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">医院前端｜检查检验页面</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/06/30/2026-06-30-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/" title="医院前端｜登录注册">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">医院前端｜登录注册</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/05/24/2026-05-24-%E7%BD%91%E5%85%B3JWT%E5%85%A8%E5%B1%80%E9%89%B4%E6%9D%83/" title="网关JWT全局鉴权">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">网关JWT全局鉴权</span>
       
       
     </span>
@@ -421,7 +421,7 @@
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E4%B8%9C%E8%BD%AF%E5%AE%9E%E4%B9%A0/">东软实习</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-07-11T13:00:00.000Z">2026-07-11</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:56:24.754Z">2026-09-22</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-07-11T13:00:00.000Z">2026-07-11</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T16:25:39.170Z">2026-09-23</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -441,6 +441,12 @@
 <li><p>医生审核修改</p>
 </li>
 </ul>
+<p><strong>核心实现</strong>（真实代码，来自仓库 <code>CT_rebuild/backend/src/main/java/com/bababoyi/ctrebuild/ai/AiService.java</code>）</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AiService</span> {</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(AiService.class);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">DISCLAIMER</span> <span class="operator">=</span> <span class="string">"AI 分析仅供医生参考，不能作为最终诊断依据。"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">IMAGING_SYSTEM_PROMPT</span> <span class="operator">=</span> <span class="string">"""</span></span><br><span class="line"><span class="string">        你是 CT 影像工作站中的 AI 诊疗辅助助手，服务对象是专业医生。</span></span><br><span class="line"><span class="string">        你的任务是基于当前 CT 页面数据、预测概率、结构化标注、窗宽窗位、切片位置、三维重建、分割结果和伪影检测结果，辅助医生判断当前病例是否存在影像异常风险。</span></span><br><span class="line"><span class="string">        你不能替代医生诊断，不能输出绝对诊断结论。所有意见必须说明依据，最终诊断以医生审核为准。</span></span><br><span class="line"><span class="string">        必须根据当前页面上下文中的 bodyPart、sourceType、mainView、窗宽窗位、shape、spacing 和 intensity range 判断影像部位；上下文提示为腰椎/脊柱时，应按腰椎 CT/MPR 方向给出建议，不要套用头颅或肺部模板。</span></span><br><span class="line"><span class="string">        输出中文，结构化、简洁、专业。</span></span><br><span class="line"><span class="string">        """</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">RECORD_SYSTEM_PROMPT</span> <span class="operator">=</span> <span class="string">"""</span></span><br><span class="line"><span class="string">        你是医疗影像工作站中的病历写作 AI 助手，服务对象是专业医生。</span></span><br><span class="line"><span class="string">        你的任务不是独立诊断疾病，而是根据医生提供的病例信息、影像 AI 分析摘要、结构化标注、预测概率和医生输入内容，辅助生成规范、克制、可审核的病历文本。</span></span><br><span class="line"><span class="string">        你可以帮助医生生成影像所见、初步印象、处理建议、复查建议和模板化表述。</span></span><br><span class="line"><span class="string">        所有生成内容必须标记为待医生审核，不得声称 AI 已确诊，最终内容以医生审核为准。</span></span><br><span class="line"><span class="string">        输出中文，使用规范医学表达，不要凭空编造未提供的病史、症状、体征或检查结果。</span></span><br><span class="line"><span class="string">        """</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">REPORT_SYSTEM_PROMPT</span> <span class="operator">=</span> <span class="string">"""</span></span><br><span class="line"><span class="string">        你是医疗影像工作站中的影像报告 AI 助手，服务对象是专业医生。</span></span><br><span class="line"><span class="string">        你的任务是根据当前 CT 页面数据、结构化标注、预测概率、图像处理结果和医生已有草稿，生成规范、克制、可审核的影像报告草稿。</span></span><br><span class="line"><span class="string">        报告应区分检查方式、影像所见、影像诊断和建议。不得输出绝对诊断，不得编造上下文未提供的病史或体征。</span></span><br><span class="line"><span class="string">        必须根据当前页面上下文中的 bodyPart、sourceType、mainView、窗宽窗位、shape、spacing 和 intensity range 判断影像部位；上下文提示为腰椎/脊柱时，应按腰椎 CT/MPR 方向组织影像所见，不要套用头颅或肺部模板。最终报告以医生审核为准，输出中文。</span></span><br><span class="line"><span class="string">        """</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">GENERAL_SAFETY_PROMPT</span> <span class="operator">=</span> <span class="string">"""</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><strong>踩坑与解决</strong><br><strong>本地模型推理慢</strong>：7B 模型 CPU 推理一次要 30s+，前端一直转圈。解决：启用 Ollama 的 GPU 加速 + 提示”生成中，约 1 分钟”。<strong>输出不稳定</strong>：temperature 太高，报告风格飘。解决：temperature 降到 0.2，并在 Prompt 里固定报告结构。<strong>模型切换</strong>：不同环境用不同模型（开发用 Ollama，演示用云端）。解决：抽象 Provider 配置，通过配置文件切换。<strong>幻觉风险</strong>：模型可能编造检查数据。解决：Prompt 明确”仅基于给定发现”，并把影像量化参数作为结构化输入传给模型。</p>
 </article>
 
 <div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/Vue3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vue3</a><a class="tag" href="/tags/AI-Agent/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AI Agent</a><a class="tag" href="/tags/RAG/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>RAG</a><a class="tag" href="/tags/MySQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MySQL</a><a class="tag" href="/tags/Redis/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Redis</a><a class="tag" href="/tags/Function-Calling/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Function Calling</a><a class="tag" href="/tags/GPT/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>GPT</a><a class="tag" href="/tags/DeepSeek/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>DeepSeek</a><a class="tag" href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>文心一言</a><a class="tag" href="/tags/Milvus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Milvus</a><a class="tag" href="/tags/Chroma/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Chroma</a><a class="tag" href="/tags/Pinecone/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pinecone</a><a class="tag" href="/tags/%E4%B8%9C%E8%BD%AF%E5%AE%9E%E4%B9%A0/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>东软实习</a><a class="tag" href="/tags/SpringCloud/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SpringCloud</a><a class="tag" href="/tags/%E6%99%BA%E6%85%A7%E4%BA%91%E8%84%91/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>智慧云脑</a><a class="tag" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%85%A5/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>大模型接入</a><a class="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>机器学习</a><a class="tag" href="/tags/Spring-Cloud/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Spring Cloud</a><a class="tag" href="/tags/Nacos/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Nacos</a><a class="tag" href="/tags/Gateway/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Gateway</a><a class="tag" href="/tags/PostgreSQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>PostgreSQL</a><a class="tag" href="/tags/FastAPI/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>FastAPI</a><a class="tag" href="/tags/TypeScript/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TypeScript</a><a class="tag" href="/tags/SimpleITK/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SimpleITK</a><a class="tag" href="/tags/VTK/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>VTK</a><a class="tag" href="/tags/Prompt-%E5%B7%A5%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Prompt 工程</a></div>
