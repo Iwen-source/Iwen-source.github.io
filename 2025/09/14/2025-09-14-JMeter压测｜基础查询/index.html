@@ -27,29 +27,53 @@
 <meta property="og:description" content="今天做压测：  场景1：列表查询50并发  目标TPS 500+">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-14T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-22T15:44:45.682Z">
+<meta property="article:modified_time" content="2026-09-22T15:56:24.713Z">
 <meta property="article:author" content="JeremyWard(董雨飞)">
 <meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="AutoGen">
+<meta property="article:tag" content="Chroma">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="DeepSeek">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="ECharts">
+<meta property="article:tag" content="Element Plus">
 <meta property="article:tag" content="Flask">
+<meta property="article:tag" content="Function Calling">
+<meta property="article:tag" content="GPT">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="K8s">
 <meta property="article:tag" content="LangChain">
+<meta property="article:tag" content="LlamaIndex">
+<meta property="article:tag" content="Maven">
+<meta property="article:tag" content="Milvus">
+<meta property="article:tag" content="MongoDB">
 <meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="NumPy">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="Pinecone">
 <meta property="article:tag" content="PyTorch">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="RAG">
+<meta property="article:tag" content="React">
 <meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Scikit-learn">
 <meta property="article:tag" content="Spring Boot">
 <meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="TensorFlow">
 <meta property="article:tag" content="Vite">
 <meta property="article:tag" content="Vue3">
 <meta property="article:tag" content="WebSocket">
 <meta property="article:tag" content="XGBoost">
 <meta property="article:tag" content="万象智枢">
+<meta property="article:tag" content="工作流设计">
+<meta property="article:tag" content="工具链管理">
 <meta property="article:tag" content="开发日志">
+<meta property="article:tag" content="文心一言">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="JMeter压测｜基础查询">
   
   
-  <meta name="keywords" content="开发日志,万象智枢,SpringBoot,Vue3,AI Agent,LangChain,RAG,Spring Boot,MySQL,Redis,Docker,Flask,PyTorch,XGBoost,WebSocket,ECharts,Vite">
+  <meta name="keywords" content="开发日志,万象智枢,SpringBoot,Vue3,AI Agent,LangChain,RAG,Spring Boot,MySQL,Redis,Docker,Flask,PyTorch,XGBoost,WebSocket,ECharts,Vite,Function Calling,LlamaIndex,AutoGen,GPT,DeepSeek,文心一言,Codex,OpenClaw,工具链管理,工作流设计,MongoDB,Pandas,NumPy,Scikit-learn,TensorFlow,React,Element Plus,Milvus,Chroma,Pinecone,Maven,K8s,Python,Java">
 
   <!-- feed -->
   
@@ -62,7 +86,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-09-14T21:00:00+08:00","dateModified":"2026-09-22T23:44:45+08:00","datePublished":"2025-09-14T21:00:00+08:00","description":"今天做压测：\n\n场景1：列表查询50并发\n\n目标TPS 500+\n\n\n","headline":"JMeter压测｜基础查询","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/09/14/2025-09-14-JMeter%E5%8E%8B%E6%B5%8B%EF%BD%9C%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/09/14/2025-09-14-JMeter%E5%8E%8B%E6%B5%8B%EF%BD%9C%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2/","keywords":"开发日志, 万象智枢, SpringBoot, Vue3, AI Agent, LangChain, RAG, Spring Boot, MySQL, Redis, Docker, Flask, PyTorch, XGBoost, WebSocket, ECharts, Vite","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-09-14T21:00:00+08:00","dateModified":"2026-09-22T23:56:24+08:00","datePublished":"2025-09-14T21:00:00+08:00","description":"今天做压测：\n\n场景1：列表查询50并发\n\n目标TPS 500+\n\n\n","headline":"JMeter压测｜基础查询","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/09/14/2025-09-14-JMeter%E5%8E%8B%E6%B5%8B%EF%BD%9C%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/09/14/2025-09-14-JMeter%E5%8E%8B%E6%B5%8B%EF%BD%9C%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2/","keywords":"开发日志, 万象智枢, SpringBoot, Vue3, AI Agent, LangChain, RAG, Spring Boot, MySQL, Redis, Docker, Flask, PyTorch, XGBoost, WebSocket, ECharts, Vite, Function Calling, LlamaIndex, AutoGen, GPT, DeepSeek, 文心一言, Codex, OpenClaw, 工具链管理, 工作流设计, MongoDB, Pandas, NumPy, Scikit-learn, TensorFlow, React, Element Plus, Milvus, Chroma, Pinecone, Maven, K8s, Python, Java","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   <link rel="stylesheet" href="/css/custom-style.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -228,24 +252,6 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/17/2026-07-17-%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E4%B8%8E%E6%B8%85%E7%90%86/" title="代码整理与清理">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">代码整理与清理</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/16/2026-07-16-README%E4%B8%8E%E6%96%87%E6%A1%A3/" title="README与文档">
   
   
@@ -264,31 +270,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/15/2026-07-15-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BD%9CSwagger/" title="接口文档｜Swagger">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/17/2026-07-17-%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E4%B8%8E%E6%B8%85%E7%90%86/" title="代码整理与清理">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">接口文档｜Swagger</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/13/2026-07-13-Docker%20Compose%E7%BC%96%E6%8E%92/" title="Docker Compose编排">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">Docker Compose编排</span>
+      <span class="ui-collection__title">代码整理与清理</span>
       
       
     </span>
@@ -318,6 +306,24 @@
 
   
     
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/15/2026-07-15-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BD%9CSwagger/" title="接口文档｜Swagger">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">接口文档｜Swagger</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/12/2026-07-12-%E8%81%94%E8%B0%83%EF%BD%9C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%89%93%E9%80%9A/" title="联调｜前后端打通">
   
   
@@ -325,6 +331,24 @@
     <span class="ui-collection__content">
       
       <span class="ui-collection__title">联调｜前后端打通</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/13/2026-07-13-Docker%20Compose%E7%BC%96%E6%8E%92/" title="Docker Compose编排">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">Docker Compose编排</span>
       
       
     </span>
@@ -411,7 +435,7 @@
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2%E9%A1%B9%E7%9B%AE/">万象智枢项目</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-09-14T13:00:00.000Z">2025-09-14</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:44:45.682Z">2026-09-22</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-09-14T13:00:00.000Z">2025-09-14</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:56:24.713Z">2026-09-22</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -433,7 +457,7 @@
 </ul>
 </article>
 
-<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>万象智枢</a><a class="tag" href="/tags/SpringBoot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SpringBoot</a><a class="tag" href="/tags/Vue3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vue3</a><a class="tag" href="/tags/AI-Agent/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AI Agent</a><a class="tag" href="/tags/LangChain/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LangChain</a><a class="tag" href="/tags/RAG/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>RAG</a><a class="tag" href="/tags/Spring-Boot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Spring Boot</a><a class="tag" href="/tags/MySQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MySQL</a><a class="tag" href="/tags/Redis/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Redis</a><a class="tag" href="/tags/Docker/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Docker</a><a class="tag" href="/tags/Flask/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Flask</a><a class="tag" href="/tags/PyTorch/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>PyTorch</a><a class="tag" href="/tags/XGBoost/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>XGBoost</a><a class="tag" href="/tags/WebSocket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>WebSocket</a><a class="tag" href="/tags/ECharts/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>ECharts</a><a class="tag" href="/tags/Vite/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vite</a></div>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>万象智枢</a><a class="tag" href="/tags/SpringBoot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SpringBoot</a><a class="tag" href="/tags/Vue3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vue3</a><a class="tag" href="/tags/AI-Agent/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AI Agent</a><a class="tag" href="/tags/LangChain/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LangChain</a><a class="tag" href="/tags/RAG/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>RAG</a><a class="tag" href="/tags/Spring-Boot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Spring Boot</a><a class="tag" href="/tags/MySQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MySQL</a><a class="tag" href="/tags/Redis/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Redis</a><a class="tag" href="/tags/Docker/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Docker</a><a class="tag" href="/tags/Flask/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Flask</a><a class="tag" href="/tags/PyTorch/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>PyTorch</a><a class="tag" href="/tags/XGBoost/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>XGBoost</a><a class="tag" href="/tags/WebSocket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>WebSocket</a><a class="tag" href="/tags/ECharts/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>ECharts</a><a class="tag" href="/tags/Vite/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vite</a><a class="tag" href="/tags/Function-Calling/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Function Calling</a><a class="tag" href="/tags/LlamaIndex/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LlamaIndex</a><a class="tag" href="/tags/AutoGen/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AutoGen</a><a class="tag" href="/tags/GPT/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>GPT</a><a class="tag" href="/tags/DeepSeek/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>DeepSeek</a><a class="tag" href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>文心一言</a><a class="tag" href="/tags/Codex/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Codex</a><a class="tag" href="/tags/OpenClaw/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>OpenClaw</a><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE%E7%AE%A1%E7%90%86/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工具链管理</a><a class="tag" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%AE%BE%E8%AE%A1/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工作流设计</a><a class="tag" href="/tags/MongoDB/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MongoDB</a><a class="tag" href="/tags/Pandas/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pandas</a><a class="tag" href="/tags/NumPy/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>NumPy</a><a class="tag" href="/tags/Scikit-learn/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Scikit-learn</a><a class="tag" href="/tags/TensorFlow/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TensorFlow</a><a class="tag" href="/tags/React/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>React</a><a class="tag" href="/tags/Element-Plus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Element Plus</a><a class="tag" href="/tags/Milvus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Milvus</a><a class="tag" href="/tags/Chroma/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Chroma</a><a class="tag" href="/tags/Pinecone/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pinecone</a><a class="tag" href="/tags/Maven/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Maven</a><a class="tag" href="/tags/K8s/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>K8s</a><a class="tag" href="/tags/Python/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Python</a><a class="tag" href="/tags/Java/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Java</a></div>
 
 <div class="article-footer slide-up">
     <section id="license">
