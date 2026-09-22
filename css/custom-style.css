@@ -1,0 +1,216 @@
+/* ============================================
+   董雨飞的技术博客 - 自定义样式增强
+   ============================================ */
+
+/* ★ 让页面透出背后的动态壁纸 */
+body {
+  background: transparent !important;
+}
+
+/* 主体内容区半透明毛玻璃 */
+#content-inner,
+.layout-wrap,
+#article-container,
+#recent-posts,
+.archive,
+.category,
+.tagcloud,
+#aside-content .card-widget,
+#pagination {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 深色模式下 */
+[data-theme="dark"] #content-inner,
+[data-theme="dark"] .layout-wrap,
+[data-theme="dark"] #article-container,
+[data-theme="dark"] #recent-posts,
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(25, 25, 35, 0.85) !important;
+}
+
+/* 隐藏Butterfly自带的canvas-nest，我们用自己的动态壁纸替代 */
+canvas[height="0"],
+#universe {
+  display: none !important;
+}
+
+/* 全局过渡 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 导航栏毛玻璃效果 */
+#nav {
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  background: rgba(255, 255, 255, 0.75) !important;
+  transition: all 0.3s ease;
+}
+
+/* 深色模式下导航栏 */
+[data-theme="dark"] #nav {
+  background: rgba(30, 30, 40, 0.75) !important;
+}
+
+/* 文章卡片悬浮 */
+.post-cards .post-cards__item,
+.article-sort-item {
+  border-radius: 12px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+}
+
+.post-cards .post-cards__item:hover,
+.article-sort-item:hover {
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* 文章标题渐变色 */
+#article-container h1,
+#post-info h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 首页banner打字机光标闪烁 */
+#subtitle .animate-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* 回到顶部按钮 */
+#toTop {
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+#toTop:hover {
+  transform: scale(1.15);
+}
+
+/* 文章内容链接下划线动画 */
+#article-container a {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(transparent 60%, rgba(102, 126, 234, 0.2) 40%);
+  transition: background 0.3s;
+}
+
+#article-container a:hover {
+  background-image: linear-gradient(transparent 0%, rgba(102, 126, 234, 0.3) 0%);
+}
+
+/* 代码块圆角 */
+.code-expand-btn,
+.highlight,
+figure.highlight {
+  border-radius: 10px !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #764ba2, #667eea);
+}
+
+/* 标签云胶囊样式 */
+.tag-cloud a,
+#tag-cloud a {
+  transition: all 0.3s ease;
+}
+
+.tag-cloud a:hover,
+#tag-cloud a:hover {
+  transform: scale(1.1);
+  color: #667eea !important;
+}
+
+/* 头像悬浮旋转 */
+#aside-content .author-avatar,
+.author-avatar {
+  transition: transform 0.5s ease;
+}
+
+#aside-content .author-avatar:hover,
+.author-avatar:hover {
+  transform: rotate(360deg);
+}
+
+/* 页面进入动画 */
+#content-inner,
+#home-content,
+.layout-wrap {
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 按钮渐变 */
+.btn,
+button,
+.el-button--primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn:hover,
+button:hover,
+.el-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* 归档时间线美化 */
+.archives .article-sort-item {
+  border-left: 3px solid #667eea;
+  margin-left: 8px;
+}
+
+/* 目录高亮 */
+#article-container .toc .toc-item.active {
+  border-left-color: #667eea;
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: #667eea;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  #subtitle {
+    font-size: 1.2em;
+  }
+}
