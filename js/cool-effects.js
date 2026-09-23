@@ -31,15 +31,17 @@
 
   var flakes = [];
   var FLAKE_COUNT = Math.min(160, Math.max(60, Math.floor(window.innerWidth / 10)));
-  for (var fi = 0; fi < FLAKE_COUNT; fi++) {
+  var BIG_FLAKE_COUNT = 10; // 少量大雪花
+  for (var fi = 0; fi < FLAKE_COUNT + BIG_FLAKE_COUNT; fi++) {
+    var isBig = fi >= FLAKE_COUNT;
     flakes.push({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      r: Math.random() * 3 + 0.8,
+      r: isBig ? (Math.random() * 6 + 6) : (Math.random() * 3 + 0.8), // 大雪花 6~12px，小雪花 0.8~3.8px
       speedY: Math.random() * 1.2 + 0.4,
       sway: Math.random() * Math.PI * 2,
       swaySpeed: Math.random() * 0.02 + 0.008,
-      opacity: Math.random() * 0.6 + 0.3
+      opacity: isBig ? (Math.random() * 0.35 + 0.25) : (Math.random() * 0.6 + 0.3) // 大雪花更通透，不挡阅读
     });
   }
   function drawSnow() {
