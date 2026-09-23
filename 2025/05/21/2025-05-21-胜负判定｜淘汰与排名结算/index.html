@@ -27,7 +27,7 @@
 <meta property="og:description" content="今天实现胜负判定与结算逻辑。 胜负规则：  每局 3 条命，生命归零出局（观战模式）； 存活到最后 1 人 → 该玩家获胜； 若多人同时存活到时间上限（2分钟）→ 按得分排序。  逻辑实现： 123456789101112131415int check_game_over(GameState *g) {    int alive_count &#x3D; 0, winner &#x3D; -1;    for (in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-21T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-22T15:27:47.192Z">
+<meta property="article:modified_time" content="2026-09-23T03:29:24.896Z">
 <meta property="article:author" content="JeremyWard(董雨飞)">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="Linux">
@@ -53,7 +53,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-05-21T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-05-21T20:00:00+08:00","description":"今天实现胜负判定与结算逻辑。\n胜负规则：\n\n每局 3 条命，生命归零出局（观战模式）；\n存活到最后 1 人 → 该玩家获胜；\n若多人同时存活到时间上限（2分钟）→ 按得分排序。\n\n逻辑实现：\n123456789101112131415int check_game_over(GameState *g) {    int alive_count = 0, winner = -1;    for ...","headline":"胜负判定｜淘汰与排名结算","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-05-21T20:00:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2025-05-21T20:00:00+08:00","description":"今天实现胜负判定与结算逻辑。\n胜负规则：\n\n每局 3 条命，生命归零出局（观战模式）；\n存活到最后 1 人 → 该玩家获胜；\n若多人同时存活到时间上限（2分钟）→ 按得分排序。\n\n逻辑实现：\n123456789101112131415int check_game_over(GameState *g) {    int alive_count = 0, winner = -1;    for ...","headline":"胜负判定｜淘汰与排名结算","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   <link rel="stylesheet" href="/css/custom-style.css">
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -201,13 +201,13 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/15/2026-07-15-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%EF%BD%9CSwagger/" title="接口文档｜Swagger">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/06/2025-07-06-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BD%9CJDK17%20+%20Maven%20+%20Node/" title="环境搭建｜JDK17 + Maven + Node">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">接口文档｜Swagger</span>
+      <span class="ui-collection__title">环境搭建｜JDK17 + Maven + Node</span>
       
       
     </span>
@@ -219,13 +219,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/14/2026-07-14-Bug%E4%BF%AE%E5%A4%8D%EF%BD%9C%E8%81%94%E8%B0%83%E9%97%AE%E9%A2%98/" title="Bug修复｜联调问题">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/05/20/2026-05-20-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BD%9C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86/" title="架构设计｜微服务拆分">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">Bug修复｜联调问题</span>
+      <span class="ui-collection__title">架构设计｜微服务拆分</span>
       
       
     </span>
@@ -237,13 +237,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/12/2026-07-12-%E8%81%94%E8%B0%83%EF%BD%9C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%89%93%E9%80%9A/" title="联调｜前后端打通">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/03/2025-07-03-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E8%B0%83%E7%A0%94%EF%BD%9C%E6%A1%86%E6%9E%B6%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94/" title="技术选型调研｜框架版本对比">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">联调｜前后端打通</span>
+      <span class="ui-collection__title">技术选型调研｜框架版本对比</span>
       
       
     </span>
@@ -255,13 +255,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/11/2026-07-11-AI%E9%9B%86%E6%88%90%EF%BD%9C%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A%E7%94%9F%E6%88%90/" title="AI集成｜诊断报告生成">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/08/2025-07-08-%E7%AD%94%E8%BE%A9%E5%87%86%E5%A4%87%EF%BD%9C%E6%BC%94%E7%A4%BA%E8%84%9A%E6%9C%AC%E4%B8%8E%E9%97%AE%E7%AD%94%E9%A2%84%E6%A1%88/" title="答辩准备｜演示脚本与问答预案">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">AI集成｜诊断报告生成</span>
+      <span class="ui-collection__title">答辩准备｜演示脚本与问答预案</span>
       
       
     </span>
@@ -273,13 +273,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/10/2026-07-10-AI%E9%9B%86%E6%88%90%EF%BD%9COllama%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B/" title="AI集成｜Ollama本地模型">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/04/2025-04-04-%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5%EF%BD%9C%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86%E8%A7%86%E8%A7%92%E7%9A%84%E8%81%8C%E8%B4%A3%E7%9F%A9%E9%98%B5/" title="团队分工｜项目经理视角的职责矩阵">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">AI集成｜Ollama本地模型</span>
+      <span class="ui-collection__title">团队分工｜项目经理视角的职责矩阵</span>
       
       
     </span>
@@ -291,13 +291,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/09/2026-07-09-AI%E9%9B%86%E6%88%90%EF%BD%9C%E5%B0%8F%E7%B1%B3MiMo/" title="AI集成｜小米MiMo">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/01/2025-04-01-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%EF%BD%9C%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98%E7%AB%8B%E9%A1%B9/" title="项目启动｜多人联机对战立项">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">AI集成｜小米MiMo</span>
+      <span class="ui-collection__title">项目启动｜多人联机对战立项</span>
       
       
     </span>
@@ -309,13 +309,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/05/2026-07-05-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%AE%A1%E7%90%86%E5%91%98%E9%A1%B5%E9%9D%A2/" title="医院前端｜管理员页面">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/02/2025-04-02-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%EF%BD%9C%E5%AF%B9%E6%88%98%E7%8E%A9%E6%B3%95%E5%AE%9A%E4%B9%89/" title="需求分析｜对战玩法定义">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">医院前端｜管理员页面</span>
+      <span class="ui-collection__title">需求分析｜对战玩法定义</span>
       
       
     </span>
@@ -327,13 +327,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/07/03/2026-07-03-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E6%A3%80%E6%9F%A5%E6%A3%80%E9%AA%8C%E9%A1%B5%E9%9D%A2/" title="医院前端｜检查检验页面">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/09/05/2024-09-05-%E7%94%BB%E9%9D%A2%E8%A1%A8%E7%8E%B0%E5%A2%9E%E5%BC%BA%EF%BD%9C%E7%B2%92%E5%AD%90%E4%B8%8E%E5%B1%8F%E5%B9%95%E9%9C%87%E5%8A%A8/" title="画面表现增强｜粒子与屏幕震动">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">医院前端｜检查检验页面</span>
+      <span class="ui-collection__title">画面表现增强｜粒子与屏幕震动</span>
       
       
     </span>
@@ -345,13 +345,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/06/30/2026-06-30-%E5%8C%BB%E9%99%A2%E5%89%8D%E7%AB%AF%EF%BD%9C%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/" title="医院前端｜登录注册">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/08/22/2024-08-22-Bug%E9%9B%86%E4%B8%AD%E4%BF%AE%E5%A4%8D%EF%BD%9C%E8%81%94%E8%B0%83%E9%97%AE%E9%A2%98%E6%B8%85%E5%8D%95%E6%B8%85%E9%9B%B6/" title="Bug集中修复｜联调问题清单清零">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">医院前端｜登录注册</span>
+      <span class="ui-collection__title">Bug集中修复｜联调问题清单清零</span>
       
       
     </span>
@@ -363,13 +363,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/05/24/2026-05-24-%E7%BD%91%E5%85%B3JWT%E5%85%A8%E5%B1%80%E9%89%B4%E6%9D%83/" title="网关JWT全局鉴权">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/07/11/2024-07-11-%E6%9B%B4%E6%96%B0%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%88%86%E7%A6%BB%EF%BD%9C%E9%80%BB%E8%BE%91%E5%B8%A7%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%B8%A7/" title="更新与渲染分离｜逻辑帧与渲染帧">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">网关JWT全局鉴权</span>
+      <span class="ui-collection__title">更新与渲染分离｜逻辑帧与渲染帧</span>
       
       
     </span>
@@ -402,7 +402,7 @@
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98/">多人联机对战</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-21T12:00:00.000Z">2025-05-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T15:27:47.192Z">2026-09-22</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-05-21T12:00:00.000Z">2025-05-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-23T03:29:24.896Z">2026-09-23</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -432,6 +432,7 @@
 <p><strong>结算后流程</strong>：发送结算 → 10 秒后自动回房间（房主可再开局）。</p>
 <p><strong>观战模式</strong>：出局玩家不退出房间，客户端切换观战视角（跟随存活玩家镜头，简单实现：锁定剩余玩家）。实现为客户端逻辑，服务器只标记 alive=0。</p>
 <p><strong>测试</strong>：构造各种终局场景（一人存活/时间到/平局），胜负判定与排名全部正确。对局核心逻辑完成，下一步是逻辑线程整合 + 状态广播。</p>
+<p><strong>踩坑与解决</strong><br><strong>同归于尽</strong>：最后一发子弹双方同时死亡，无人获胜。解决：判定平局，重赛。<strong>胜利广播延迟</strong>：玩家赢了但界面还显示”对局中”。解决：服务器检测到 winner 立即广播结算消息。<strong>自杀处理</strong>：撞墙掉血死亡，规则需明确。解决：撞墙扣血但不判负（跌落判定除外）。<strong>排行榜</strong>：省级竞赛需要名次。解决：结算按死亡顺序记录名次。</p>
 </article>
 
 <div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/Linux/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Linux</a><a class="tag" href="/tags/%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>多人联机对战</a><a class="tag" href="/tags/C/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>C</a><a class="tag" href="/tags/Socket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Socket</a><a class="tag" href="/tags/TCP-IP/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TCP&#x2F;IP</a><a class="tag" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>多线程</a><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>网络编程</a></div>
