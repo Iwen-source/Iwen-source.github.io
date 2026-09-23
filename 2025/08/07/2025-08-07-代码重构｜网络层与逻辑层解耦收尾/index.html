@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-08-07T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-08-07T20:00:00+08:00","description":"今天做代码重构收尾，把”网络层与逻辑层解耦”贯彻到底。\n重构目标：逻辑层（游戏状态计算）完全不依赖 socket/线程，可以独立测试、独立复用。\n现状问题：\n\ngame.c 里混着 send 调用（逻辑层直接发消息）→ 破坏分层；\nserver.c 里混着游戏状态初始化 → 职责不清；\n客户端也有类似问题（渲染层里处理网络消息）。\n\n重构方案：引入”事件/命令”抽象层。\n1234567891...","headline":"代码重构｜网络层与逻辑层解耦收尾","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/08/07/2025-08-07-%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%EF%BD%9C%E7%BD%91%E7%BB%9C%E5%B1%82%E4%B8%8E%E9%80%BB%E8%BE%91%E5%B1%82%E8%A7%A3%E8%80%A6%E6%94%B6%E5%B0%BE/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/08/07/2025-08-07-%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%EF%BD%9C%E7%BD%91%E7%BB%9C%E5%B1%82%E4%B8%8E%E9%80%BB%E8%BE%91%E5%B1%82%E8%A7%A3%E8%80%A6%E6%94%B6%E5%B0%BE/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -459,6 +459,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-04-30T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-04-30T20:00:00+08:00","description":"今天专注多线程并发安全，这是服务器稳定性（NFR3）的根基。\n共享数据清单（哪些要锁）：\n123456/* 全局客户端表：所有线程都可能访问 */static ClientConn *g_clients[MAX_PLAYERS];static pthread_mutex_t g_clients_lock;/* 房间状态：逻辑线程独占（不锁，靠线程隔离保证） */static GameStat...","headline":"多线程模型｜并发安全与互斥锁","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/04/30/2025-04-30-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%EF%BD%9C%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E4%B8%8E%E4%BA%92%E6%96%A5%E9%94%81/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/04/30/2025-04-30-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%EF%BD%9C%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E4%B8%8E%E4%BA%92%E6%96%A5%E9%94%81/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -452,6 +452,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

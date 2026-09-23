@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-06-26T20:00:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2025-06-26T20:00:00+08:00","description":"今天加防作弊校验（服务器权威模型的天然优势——客户端无法伪造状态）。\n现有防线（架构自带）：\n\n位置/生命/得分全部服务器计算，客户端改本地数据无效；\n输入值范围钳制（-1~1）；\n输入频率限制。\n\n补充校验：\n\n输入频率限制（防刷屏攻击）：\n\n12/* 每连接每秒最多 60 条输入，超限丢弃 + 警告 */if (c-&gt;input_count_this_sec &gt; 60) { ...","headline":"安全校验｜防作弊基础","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/06/26/2025-06-26-%E5%AE%89%E5%85%A8%E6%A0%A1%E9%AA%8C%EF%BD%9C%E9%98%B2%E4%BD%9C%E5%BC%8A%E5%9F%BA%E7%A1%80/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/06/26/2025-06-26-%E5%AE%89%E5%85%A8%E6%A0%A1%E9%AA%8C%EF%BD%9C%E9%98%B2%E4%BD%9C%E5%BC%8A%E5%9F%BA%E7%A1%80/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -464,6 +464,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

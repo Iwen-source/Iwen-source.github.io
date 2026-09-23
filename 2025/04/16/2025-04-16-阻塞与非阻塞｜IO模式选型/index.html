@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-04-16T20:00:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2025-04-16T20:00:00+08:00","description":"今天研究阻塞/非阻塞 IO，为服务器的并发模型选型。\n阻塞模式（默认）：recv 没数据时线程挂起等待。特点：简单，但一个线程只能服务一个连接（阻塞在 recv 上）。\n非阻塞模式：recv 立即返回，无数据返回 -1 + EAGAIN。特点：需要配合 select/poll/epoll 轮询。\n我们的方案（多人小规模）：每连接一线程（阻塞模式）+ 主线程 accept。理由：\n\n4 人对战...","headline":"阻塞与非阻塞｜IO模式选型","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/04/16/2025-04-16-%E9%98%BB%E5%A1%9E%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9E%EF%BD%9CIO%E6%A8%A1%E5%BC%8F%E9%80%89%E5%9E%8B/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/04/16/2025-04-16-%E9%98%BB%E5%A1%9E%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9E%EF%BD%9CIO%E6%A8%A1%E5%BC%8F%E9%80%89%E5%9E%8B/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -452,6 +452,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

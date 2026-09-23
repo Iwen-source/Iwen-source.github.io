@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-04-10T20:00:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2025-04-10T20:00:00+08:00","description":"今天开风险分析会，重点针对用户需求里点名的三大问题：延迟、丢包、同步错乱。\n风险1：延迟超标\n\n场景：状态广播频率过高/序列化慢/线程调度抖动；\n对策：广播频率可配置（20~30Hz）；序列化用 memcpy 级拷贝（不用 sprintf）；网络线程设高优先级；每帧广播耗时打点监控；\n目标：服务器单帧广播耗时 &lt; 1ms。\n\n风险2：丢包\n\n对策：TCP 本身可靠（不丢不重），但要注意...","headline":"风险分析｜延迟丢包同步三座大山","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/04/10/2025-04-10-%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90%EF%BD%9C%E5%BB%B6%E8%BF%9F%E4%B8%A2%E5%8C%85%E5%90%8C%E6%AD%A5%E4%B8%89%E5%BA%A7%E5%A4%A7%E5%B1%B1/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/04/10/2025-04-10-%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90%EF%BD%9C%E5%BB%B6%E8%BF%9F%E4%B8%A2%E5%8C%85%E5%90%8C%E6%AD%A5%E4%B8%89%E5%BA%A7%E5%A4%A7%E5%B1%B1/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -460,6 +460,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

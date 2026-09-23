@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-05-21T20:00:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2025-05-21T20:00:00+08:00","description":"今天实现胜负判定与结算逻辑。\n胜负规则：\n\n每局 3 条命，生命归零出局（观战模式）；\n存活到最后 1 人 → 该玩家获胜；\n若多人同时存活到时间上限（2分钟）→ 按得分排序。\n\n逻辑实现：\n123456789101112131415int check_game_over(GameState *g) {    int alive_count = 0, winner = -1;    for ...","headline":"胜负判定｜淘汰与排名结算","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/05/21/2025-05-21-%E8%83%9C%E8%B4%9F%E5%88%A4%E5%AE%9A%EF%BD%9C%E6%B7%98%E6%B1%B0%E4%B8%8E%E6%8E%92%E5%90%8D%E7%BB%93%E7%AE%97/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -455,6 +455,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

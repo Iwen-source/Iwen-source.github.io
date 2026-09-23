@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-06-10T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2025-06-10T20:00:00+08:00","description":"今天专项处理”丢包”问题（用户点名）。虽然 TCP 保证可靠传输，但要验证并理解在什么情况下会出现问题。\nTCP 可靠性机制复习（写进文档）：序号 + ACK + 超时重传 + 快速重传。TCP 不会丢应用层数据，但可能：\n\n延迟重传：网络抖动时重传导致延迟突增；\n队头阻塞：一个包丢失，后续包全等它重传；\n缓冲区溢出：发送/接收缓冲满 → 发送阻塞。\n\n我们的实测（局域网正常环境）：0 丢包...","headline":"丢包与重传｜TCP可靠性确认","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/06/10/2025-06-10-%E4%B8%A2%E5%8C%85%E4%B8%8E%E9%87%8D%E4%BC%A0%EF%BD%9CTCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%A1%AE%E8%AE%A4/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/06/10/2025-06-10-%E4%B8%A2%E5%8C%85%E4%B8%8E%E9%87%8D%E4%BC%A0%EF%BD%9CTCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%A1%AE%E8%AE%A4/","keywords":"开发日志, Linux, 多人联机对战, C, Socket, TCP/IP, 多线程, 网络编程","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -453,6 +453,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

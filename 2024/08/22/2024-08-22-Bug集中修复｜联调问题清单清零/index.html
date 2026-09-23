@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2024-08-22T20:00:00+08:00","dateModified":"2026-09-23T11:31:45+08:00","datePublished":"2024-08-22T20:00:00+08:00","description":"今天把累积的 Bug 清单集中清一遍。联调和试玩以来 GitHub Issues 里挂了 9 个问题，今天全部处理：\n\n\n\n#\n问题\n严重度\n处理\n\n\n\n1\n二段跳偶尔失效\n高\n跳跃缓冲时间窗口与二段跳冲突，重置跳跃次数时机修正\n\n\n2\n暂停后 BGM 不恢复\n中\nMix_Resume 调用时机提前到恢复前一帧\n\n\n3\n结算界面星星动画卡顿\n低\n动画用固定帧率计时，改为 deltaTime\n...","headline":"Bug集中修复｜联调问题清单清零","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2024/08/22/2024-08-22-Bug%E9%9B%86%E4%B8%AD%E4%BF%AE%E5%A4%8D%EF%BD%9C%E8%81%94%E8%B0%83%E9%97%AE%E9%A2%98%E6%B8%85%E5%8D%95%E6%B8%85%E9%9B%B6/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2024/08/22/2024-08-22-Bug%E9%9B%86%E4%B8%AD%E4%BF%AE%E5%A4%8D%EF%BD%9C%E8%81%94%E8%B0%83%E9%97%AE%E9%A2%98%E6%B8%85%E5%8D%95%E6%B8%85%E9%9B%B6/","keywords":"2D横版闯关, 开发日志, C++, SDL2, Linux, CMake, Git, 游戏开发","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -506,6 +506,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

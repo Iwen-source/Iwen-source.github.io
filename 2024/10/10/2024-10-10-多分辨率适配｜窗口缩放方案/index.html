@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2024-10-10T20:00:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2024-10-10T20:00:00+08:00","description":"今天做多分辨率适配，让游戏在不同屏幕上都正常显示。\n方案选择：固定内部逻辑分辨率（1280x720）+ 拉伸/留边适配显示。\n12345678910111213const int LOGICAL_W = 1280, LOGICAL_H = 720;void Game::handleResize() {    int winW, winH;    SDL_GetWindowSize(m_win...","headline":"多分辨率适配｜窗口缩放方案","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2024/10/10/2024-10-10-%E5%A4%9A%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%82%E9%85%8D%EF%BD%9C%E7%AA%97%E5%8F%A3%E7%BC%A9%E6%94%BE%E6%96%B9%E6%A1%88/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2024/10/10/2024-10-10-%E5%A4%9A%E5%88%86%E8%BE%A8%E7%8E%87%E9%80%82%E9%85%8D%EF%BD%9C%E7%AA%97%E5%8F%A3%E7%BC%A9%E6%94%BE%E6%96%B9%E6%A1%88/","keywords":"2D横版闯关, 开发日志, C++, SDL2, Linux, CMake, Git, 游戏开发","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -447,6 +447,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

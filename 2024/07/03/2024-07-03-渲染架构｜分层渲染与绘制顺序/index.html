@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2024-07-03T19:30:00+08:00","dateModified":"2026-09-22T23:27:47+08:00","datePublished":"2024-07-03T19:30:00+08:00","description":"今天设计渲染架构，重点解决绘制顺序问题。2D 游戏里先画谁后画谁直接决定画面正确性。\n引入”渲染层”概念，用枚举定义绘制优先级：\n123456789enum class RenderLayer {    BACKGROUND = 0,  // 背景    TILEMAP,         // 瓦片地图    ITEMS,           // 道具    ENTITIES,      ...","headline":"渲染架构｜分层渲染与绘制顺序","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2024/07/03/2024-07-03-%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%EF%BD%9C%E5%88%86%E5%B1%82%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2024/07/03/2024-07-03-%E6%B8%B2%E6%9F%93%E6%9E%B6%E6%9E%84%EF%BD%9C%E5%88%86%E5%B1%82%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BB%98%E5%88%B6%E9%A1%BA%E5%BA%8F/","keywords":"2D横版闯关, 开发日志, C++, SDL2, Linux, CMake, Git, 游戏开发","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -445,6 +445,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>

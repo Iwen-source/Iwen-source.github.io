@@ -54,7 +54,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2024-08-07T19:30:00+08:00","dateModified":"2026-09-23T11:29:24+08:00","datePublished":"2024-08-07T19:30:00+08:00","description":"今天设计第五关的 Boss 战——石头巨人。Boss 战是横版游戏的高潮，必须设计得有记忆点。\nBoss 状态机：\n1enum class BossState { IDLE, TELEGRAPH, SLAM, CHARGE, STUNNED, DEAD };\n\n三阶段血量设计（Boss 共 15 血）：\n\n阶段1（15~10血）：重锤砸地（起手前有 1 秒预警帧——手臂上举发光）、挥拳；\n阶...","headline":"第五关｜Boss战设计","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2024/08/07/2024-08-07-%E7%AC%AC%E4%BA%94%E5%85%B3%EF%BD%9CBoss%E6%88%98%E8%AE%BE%E8%AE%A1/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2024/08/07/2024-08-07-%E7%AC%AC%E4%BA%94%E5%85%B3%EF%BD%9CBoss%E6%88%98%E8%AE%BE%E8%AE%A1/","keywords":"2D横版闯关, 开发日志, C++, SDL2, Linux, CMake, Git, 游戏开发","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
-  <link rel="stylesheet" href="/css/custom-style.css">
+  <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
   
@@ -454,6 +454,7 @@
 
 
 <footer class="page-footer slide-up footnote"><hr><div class="text"><p>本站由 <a href="/">JeremyWard(董雨飞)</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.44.0">Stellar 1.44.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次，访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right" data-ui-surface="sidebar"></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
