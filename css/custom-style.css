@@ -588,3 +588,8 @@ aside img {
 .l_left header.header {
   display: none !important;
 }
+
+/* ⑫ 移除右侧栏（无实际用途），主内容区自动居中 */
+.l_right {
+  display: none !important;
+}
