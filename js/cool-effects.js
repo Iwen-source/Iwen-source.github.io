@@ -42,7 +42,9 @@
       sway: Math.random() * Math.PI * 2,
       swaySpeed: Math.random() * 0.02 + 0.008,
       opacity: isBig ? (Math.random() * 0.35 + 0.45) : (Math.random() * 0.6 + 0.3), // 大雪花 0.45~0.8 更醒目
-      isBig: isBig
+      isBig: isBig,
+      rot: Math.random() * Math.PI * 2,       // 花瓣旋转角
+      rotSpeed: (Math.random() - 0.5) * 0.05  // 花瓣旋转速度
     });
   }
   /* 画六角形雪花：6 条主枝 + 每枝两条 ±60° 侧枝 */
@@ -69,28 +71,46 @@
       ctx.stroke();
     }
   }
+  /* 画樱花花瓣：旋转的粉色椭圆 */
+  function drawPetal(ctx, x, y, r, rot, opacity) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r, r * 0.55, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,182,211,' + opacity + ')';
+    ctx.fill();
+    ctx.restore();
+  }
   function drawSnow() {
     sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+    var dark = isDarkTheme();
     var rgb = snowRGB();
     for (var i = 0; i < flakes.length; i++) {
       var f = flakes[i];
       f.sway += f.swaySpeed;
+      f.rot += f.rotSpeed;
       f.y += f.speedY;
       f.x += Math.sin(f.sway) * 0.6;
       if (f.y > window.innerHeight + 5) { f.y = -5; f.x = Math.random() * window.innerWidth; }
       if (f.x > window.innerWidth + 5) f.x = -5;
       if (f.x < -5) f.x = window.innerWidth + 5;
-      if (f.isBig) {
-        // 大雪花：六角形晶体
-        sctx.strokeStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
-        sctx.lineWidth = Math.max(1, f.r * 0.18);
-        drawSnowflake(sctx, f.x, f.y, f.r);
+      if (dark) {
+        // 黑夜：六角雪花 + 细碎雪点
+        if (f.isBig) {
+          sctx.strokeStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+          sctx.lineWidth = Math.max(1, f.r * 0.18);
+          drawSnowflake(sctx, f.x, f.y, f.r);
+        } else {
+          sctx.beginPath();
+          sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+          sctx.fill();
+        }
       } else {
-        // 小雪花：细碎圆点
-        sctx.beginPath();
-        sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
-        sctx.fill();
+        // 白天：樱花花瓣旋转飘落
+        var pr = f.isBig ? f.r * 1.15 : f.r * 1.6;
+        drawPetal(sctx, f.x, f.y, pr, f.rot, f.opacity * (f.isBig ? 1 : 0.9));
       }
     }
     requestAnimationFrame(drawSnow);
@@ -139,7 +159,7 @@
 
   /* ========== 1. 顶部渐变进度条 ========== */
   var bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#00d4ff,#7c3aed,#ec4899,#00d4ff);background-size:300% 100%;z-index:99999;transition:width .15s ease;box-shadow:0 0 12px #00d4ff;animation:gradientFlow 2s linear infinite;';
+  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#FF9EC5,#B39DDB,#FF8FBF,#FF9EC5);background-size:300% 100%;z-index:99999;transition:width .15s ease;box-shadow:0 0 12px #FF8FBF;animation:gradientFlow 2s linear infinite;';
   var style = document.createElement('style');
   style.textContent = '@keyframes gradientFlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}';
   document.head.appendChild(style);
@@ -176,7 +196,7 @@
     lastX = e.clientX;
     lastY = e.clientY;
     if (speed > 3) {
-      trail.push({ x: e.clientX, y: e.clientY, life: 1, hue: 190 + Math.sin(Date.now() / 500) * 80 });
+      trail.push({ x: e.clientX, y: e.clientY, life: 1, hue: 330 + Math.sin(Date.now() / 500) * 40 });
       if (trail.length > MAX_TRAIL) trail.shift();
     }
   });
@@ -227,7 +247,7 @@
   /* ========== 4. 点击波纹扩散 ========== */
   document.addEventListener('click', function (e) {
     var ripple = document.createElement('div');
-    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #00d4ff;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
+    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #FF8FBF;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
     document.body.appendChild(ripple);
     setTimeout(function () { ripple.remove(); }, 600);
   });
@@ -260,15 +280,15 @@
   var titleStyle = document.createElement('style');
   titleStyle.textContent = `
     .article-title, .post-title h1, h1 {
-      background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
+      background: linear-gradient(135deg, #FF9EC5 0%, #B39DDB 50%, #A78BFA 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    ::selection { background: rgba(0,212,255,.3); color: #00d4ff; }
+    ::selection { background: rgba(255,143,191,.3); color: #C26E9A; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#00d4ff,#7c3aed); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#FF9EC5,#A78BFA); border-radius: 3px; }
     a:hover { transition: all .2s; }
   `;
   document.head.appendChild(titleStyle);
@@ -287,5 +307,5 @@
     document.documentElement.style.setProperty('--fx-paused', document.hidden ? 'paused' : '');
   });
 
-  console.log('%c✨ Stellar特效已加载', 'color:#00d4ff;font-size:13px;font-weight:bold;');
+  console.log('%c🌸 樱花/雪花特效已加载', 'color:#FF8FBF;font-size:13px;font-weight:bold;');
 })();

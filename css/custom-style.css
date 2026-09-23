@@ -272,3 +272,136 @@ button:hover,
   background: rgba(10, 15, 35, 0.45);
   border-color: rgba(255, 255, 255, 0.18);
 }
+
+/* ============================================
+   二次元化改造：樱花粉 + 薰衣草紫 治愈系
+   ============================================ */
+
+/* ① 二次元背景：浅色模式叠加樱花插画（半透明白遮罩保证可读），深色模式交给星空层 */
+html {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.52)),
+    url('/images/anime-bg-light.jpg') center/cover no-repeat fixed;
+  background-color: #FFF0F5;
+}
+[data-theme="dark"] html {
+  background-image: none;
+  background-color: transparent;
+}
+
+/* ② 主题配色变量：粉白底 / 奶白卡片 / 薰衣草紫链接 */
+:root {
+  --background: #FFF0F5;
+  --card: #FFFDFD;
+  --bg-a20: rgba(255, 255, 255, 0.2);
+  --bg-a50: rgba(255, 255, 255, 0.5);
+  --bg-a60: rgba(255, 255, 255, 0.6);
+  --bg-a75: rgba(255, 255, 255, 0.75);
+  --bg-a100: rgba(255, 255, 255, 1);
+  --block: rgba(180, 140, 217, 0.10);
+  --block-border: rgba(180, 140, 217, 0.16);
+  --link: #8B5CF6;
+  --link-hover: #FF8FBF;
+}
+[data-theme="dark"] {
+  --background: #140B22;
+  --card: #1F1533;
+  --bg-a20: rgba(20, 11, 34, 0.2);
+  --bg-a50: rgba(20, 11, 34, 0.5);
+  --bg-a60: rgba(20, 11, 34, 0.6);
+  --bg-a75: rgba(20, 11, 34, 0.75);
+  --block: rgba(196, 181, 253, 0.10);
+  --block-border: rgba(196, 181, 253, 0.16);
+  --link: #C4B5FD;
+  --link-hover: #FF9EC5;
+}
+
+/* ③ 二次元圆润字体：得意黑 Smiley Sans（标题/菜单/按钮），正文保持系统字体 */
+@font-face {
+  font-family: 'SmileySans';
+  src: url('https://cdn.jsdelivr.net/npm/smiley-sans/dist/woff2/SmileySans-Oblique.woff2') format('woff2');
+  font-display: swap;
+}
+h1, h2, h3, h4,
+.site-title, .site-name, .logo,
+.menu a, .post-title, .article-title,
+.widget-header, .page-footer,
+button, .btn, #theme-toggle-btn {
+  font-family: 'SmileySans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* ④ 卡片柔化：大圆角 + 粉紫微阴影 */
+.l_left .widgets,
+.l_right .widgets,
+.l_left aside,
+.l_right aside,
+.leftbar-container,
+.widget-wrapper,
+.post-card,
+.toc {
+  border-radius: 18px !important;
+}
+.widget-wrapper,
+.post-card,
+.leftbar-container {
+  box-shadow: 0 6px 24px rgba(255, 143, 191, 0.12);
+}
+
+/* ⑤ 左侧栏粉透毛玻璃 */
+.l_left {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+[data-theme="dark"] .l_left {
+  background: rgba(20, 11, 34, 0.55);
+}
+
+/* ⑥ 右侧栏柔和毛玻璃 */
+.l_right {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+[data-theme="dark"] .l_right {
+  background: rgba(20, 11, 34, 0.4);
+}
+
+/* ⑦ 链接与强调的二次元配色 */
+a {
+  color: var(--link);
+}
+a:hover {
+  color: var(--link-hover);
+}
+.post-card:hover {
+  box-shadow: 0 10px 30px rgba(255, 143, 191, 0.28);
+}
+
+/* ⑧ 头像圆角二次元化（侧栏图片） */
+.l_left img,
+.leftbar-container img,
+aside img {
+  border-radius: 50% !important;
+  border: 3px solid rgba(255, 158, 197, 0.45);
+  box-shadow: 0 4px 14px rgba(255, 143, 191, 0.25);
+}
+
+/* ⑨ 主题切换按钮二次元配色 */
+#theme-toggle-btn {
+  background: linear-gradient(135deg, rgba(255, 158, 197, 0.4), rgba(167, 139, 250, 0.4));
+  border-color: rgba(255, 158, 197, 0.45);
+}
+
+/* ⑩ 滚动条粉紫 */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF9EC5, #A78BFA);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #A78BFA, #FF9EC5);
+}
+::selection {
+  background: rgba(255, 143, 191, 0.3);
+  color: #C26E9A;
+}
