@@ -315,11 +315,11 @@
       x: Math.random() * w * 1.15 - w * 0.07,          // 从天空上部/侧面任意处
       y: Math.random() * h * 0.45,
       angle: Math.PI / 4 + (Math.random() * 0.5 - 0.25), // 斜向下方（45°±15°）
-      speed: 8 + Math.random() * 9,
-      len: 90 + Math.random() * 140,
+      speed: 7 + Math.random() * 7,
+      len: 140 + Math.random() * 150,                    // 修长拖尾
       life: 1,
-      decay: 0.006 + Math.random() * 0.012,
-      width: 1.5 + Math.random() * 1.8
+      decay: 0.005 + Math.random() * 0.01,
+      width: 1.2 + Math.random() * 1.8                   // 细锐流星
     });
   }
 
@@ -345,22 +345,35 @@
         continue;
       }
       var hx = mt.x, hy = mt.y;
-      var tx = mt.x - Math.cos(mt.angle) * mt.len;
-      var ty = mt.y - Math.sin(mt.angle) * mt.len;
-      var grad = mctx.createLinearGradient(hx, hy, tx, ty);
-      grad.addColorStop(0, 'rgba(255,255,255,' + (mt.life * 0.95) + ')');
-      grad.addColorStop(0.3, 'rgba(190,222,255,' + (mt.life * 0.65) + ')');
-      grad.addColorStop(1, 'rgba(190,222,255,0)');
-      mctx.strokeStyle = grad;
-      mctx.lineWidth = mt.width;
-      mctx.lineCap = 'round';
+      var len = mt.len * (0.35 + 0.65 * mt.life); // 尾部随流星消失自然缩短
+      var cosA = Math.cos(mt.angle), sinA = Math.sin(mt.angle);
+      // 头部辉光（柔和的淡蓝光晕）
+      var glowR = mt.width * 7;
+      var glow = mctx.createRadialGradient(hx, hy, 0, hx, hy, glowR);
+      glow.addColorStop(0, 'rgba(205,228,255,' + (mt.life * 0.55) + ')');
+      glow.addColorStop(1, 'rgba(205,228,255,0)');
+      mctx.fillStyle = glow;
+      mctx.fillRect(hx - glowR, hy - glowR, glowR * 2, glowR * 2);
+      // 锥形拖尾：分段绘制，线宽从头到尾递减，颜色渐隐（告别生硬直线）
+      var SEGS = 10;
+      for (var s = 0; s < SEGS; s++) {
+        var t0 = s / SEGS;
+        var t1 = (s + 1) / SEGS;
+        var x0 = hx - cosA * len * t0;
+        var y0 = hy - sinA * len * t0;
+        var x1 = hx - cosA * len * t1;
+        var y1 = hy - sinA * len * t1;
+        mctx.strokeStyle = 'rgba(215,235,255,' + (mt.life * (1 - t0) * 0.9) + ')';
+        mctx.lineWidth = Math.max(0.3, mt.width * (1 - t0));
+        mctx.lineCap = 'round';
+        mctx.beginPath();
+        mctx.moveTo(x0, y0);
+        mctx.lineTo(x1, y1);
+        mctx.stroke();
+      }
+      // 头部亮核
       mctx.beginPath();
-      mctx.moveTo(hx, hy);
-      mctx.lineTo(tx, ty);
-      mctx.stroke();
-      // 头部亮点
-      mctx.beginPath();
-      mctx.arc(hx, hy, mt.width * 1.2, 0, Math.PI * 2);
+      mctx.arc(hx, hy, mt.width * 1.5, 0, Math.PI * 2);
       mctx.fillStyle = 'rgba(255,255,255,' + mt.life + ')';
       mctx.fill();
     }
