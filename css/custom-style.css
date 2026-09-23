@@ -239,3 +239,36 @@ button:hover,
   margin: 2px 0;
   line-height: 1.4;
 }
+
+/* ============================================
+   右上角主题切换按钮
+   ============================================ */
+#theme-toggle-btn {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 100000;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+#theme-toggle-btn:hover {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+}
+[data-theme="dark"] #theme-toggle-btn {
+  background: rgba(10, 15, 35, 0.45);
+  border-color: rgba(255, 255, 255, 0.18);
+}
