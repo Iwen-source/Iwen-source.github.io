@@ -5,15 +5,17 @@
 (function () {
   'use strict';
 
-  /* 雪花与星星颜色随主题深浅自适应 */
-  function isDarkTheme() {
-    var theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'dark') return true;
-    if (theme === 'light') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
+  /* ========== 固定夜景：移除任何主题残留，永远保持夜空模式 ========== */
+  try { window.localStorage.removeItem('Stellar.theme'); } catch (e) {}
+  var themeKiller = new MutationObserver(function () {
+    document.documentElement.removeAttribute('data-theme');
+  });
+  themeKiller.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  document.documentElement.removeAttribute('data-theme');
+
+  /* 雪花与星星固定为白色（夜景） */
   function snowRGB() {
-    return isDarkTheme() ? '255,255,255' : '90,110,150';   // 深色→白 浅色→深蓝灰
+    return '255,255,255'; // 固定夜景：白色雪花
   }
 
   /* ========== 0. 雪花飘落（前景层，不挡交互） ========== */
@@ -71,29 +73,8 @@
       ctx.stroke();
     }
   }
-  /* 画青色流光粒子：发光圆点 + 上拖尾（赛博数据雨） */
-  function drawTechDrop(ctx, x, y, r, opacity, rgb) {
-    // 上拖尾
-    ctx.beginPath();
-    ctx.moveTo(x, y - r * 4.5);
-    ctx.lineTo(x, y - r);
-    ctx.strokeStyle = 'rgba(' + rgb + ',' + (opacity * 0.45) + ')';
-    ctx.lineWidth = Math.max(1, r * 0.55);
-    ctx.lineCap = 'round';
-    ctx.stroke();
-    // 主体光点
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(' + rgb + ',' + opacity + ')';
-    ctx.fill();
-  }
-  /* 粒子颜色：亮色模式用深青（浅底可读），默认赛博暗色用霓虹亮青 */
-  function dropRGB() {
-    return document.documentElement.getAttribute('data-theme') === 'light' ? '0,110,220' : '0,229,255';
-  }
   function drawSnow() {
     sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-    var dark = isDarkTheme();
     var rgb = snowRGB();
     for (var i = 0; i < flakes.length; i++) {
       var f = flakes[i];
@@ -104,22 +85,17 @@
       if (f.y > window.innerHeight + 5) { f.y = -5; f.x = Math.random() * window.innerWidth; }
       if (f.x > window.innerWidth + 5) f.x = -5;
       if (f.x < -5) f.x = window.innerWidth + 5;
-      if (dark) {
-        // 黑夜：六角雪花 + 细碎雪点
-        if (f.isBig) {
-          sctx.strokeStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
-          sctx.lineWidth = Math.max(1, f.r * 0.18);
-          drawSnowflake(sctx, f.x, f.y, f.r);
-        } else {
-          sctx.beginPath();
-          sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-          sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
-          sctx.fill();
-        }
+      if (f.isBig) {
+        // 大雪花：六角形晶体
+        sctx.strokeStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+        sctx.lineWidth = Math.max(1, f.r * 0.18);
+        drawSnowflake(sctx, f.x, f.y, f.r);
       } else {
-        // 白天/默认赛博：青色流光粒子雨
-        var pr = f.isBig ? f.r * 1.15 : f.r * 1.3;
-        drawTechDrop(sctx, f.x, f.y, pr, f.opacity, dropRGB());
+        // 小雪花：细碎圆点
+        sctx.beginPath();
+        sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+        sctx.fill();
       }
     }
     requestAnimationFrame(drawSnow);
@@ -316,5 +292,81 @@
     document.documentElement.style.setProperty('--fx-paused', document.hidden ? 'paused' : '');
   });
 
-  console.log('%c⚡ 赛博特效已加载', 'color:#00E5FF;font-size:13px;font-weight:bold;');
+  /* ========== 8. 流星雨：点击页面触发，大量流星划过夜空 ========== */
+  var meteorCanvas = document.createElement('canvas');
+  meteorCanvas.id = 'meteor-layer';
+  meteorCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9994;pointer-events:none;';
+  document.documentElement.appendChild(meteorCanvas);
+  var mctx = meteorCanvas.getContext('2d');
+  function resizeMeteor() {
+    meteorCanvas.width = window.innerWidth;
+    meteorCanvas.height = window.innerHeight;
+  }
+  resizeMeteor();
+  window.addEventListener('resize', resizeMeteor);
+
+  var meteors = [];
+  var METEOR_DECAY = 0.01;
+
+  function spawnMeteor() {
+    var w = meteorCanvas.width;
+    var h = meteorCanvas.height;
+    meteors.push({
+      x: Math.random() * w * 1.15 - w * 0.07,          // 从天空上部/侧面任意处
+      y: Math.random() * h * 0.45,
+      angle: Math.PI / 4 + (Math.random() * 0.5 - 0.25), // 斜向下方（45°±15°）
+      speed: 8 + Math.random() * 9,
+      len: 90 + Math.random() * 140,
+      life: 1,
+      decay: 0.006 + Math.random() * 0.012,
+      width: 1.5 + Math.random() * 1.8
+    });
+  }
+
+  function shootMeteorShower() {
+    var n = 32 + Math.floor(Math.random() * 26); // 每次 32~57 颗
+    for (var i = 0; i < n; i++) {
+      (function (delay) {
+        setTimeout(spawnMeteor, delay);
+      })(i * 55 + Math.random() * 50); // 接连涌现，形成"很多很多"的流星雨
+    }
+  }
+  document.addEventListener('click', shootMeteorShower);
+
+  function drawMeteors() {
+    mctx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
+    for (var i = meteors.length - 1; i >= 0; i--) {
+      var mt = meteors[i];
+      mt.x += Math.cos(mt.angle) * mt.speed;
+      mt.y += Math.sin(mt.angle) * mt.speed;
+      mt.life -= mt.decay;
+      if (mt.life <= 0 || mt.y > meteorCanvas.height + 30 || mt.x > meteorCanvas.width + 30) {
+        meteors.splice(i, 1);
+        continue;
+      }
+      var hx = mt.x, hy = mt.y;
+      var tx = mt.x - Math.cos(mt.angle) * mt.len;
+      var ty = mt.y - Math.sin(mt.angle) * mt.len;
+      var grad = mctx.createLinearGradient(hx, hy, tx, ty);
+      grad.addColorStop(0, 'rgba(255,255,255,' + (mt.life * 0.95) + ')');
+      grad.addColorStop(0.3, 'rgba(190,222,255,' + (mt.life * 0.65) + ')');
+      grad.addColorStop(1, 'rgba(190,222,255,0)');
+      mctx.strokeStyle = grad;
+      mctx.lineWidth = mt.width;
+      mctx.lineCap = 'round';
+      mctx.beginPath();
+      mctx.moveTo(hx, hy);
+      mctx.lineTo(tx, ty);
+      mctx.stroke();
+      // 头部亮点
+      mctx.beginPath();
+      mctx.arc(hx, hy, mt.width * 1.2, 0, Math.PI * 2);
+      mctx.fillStyle = 'rgba(255,255,255,' + mt.life + ')';
+      mctx.fill();
+    }
+    requestAnimationFrame(drawMeteors);
+  }
+  drawMeteors();
+
+  console.log('%c🌠 夜景特效已加载：雪花 + 星空 + 点击流星雨', 'color:#A9C7FF;font-size:13px;font-weight:bold;');
 })();

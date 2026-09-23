@@ -411,25 +411,12 @@ aside img {
    （覆盖上方二次元樱花系，后定义优先）
    ============================================ */
 
-/* ① 默认背景：赛博朋克城市夜景（深色遮罩保可读） */
+/* ① 默认背景：用户提供的复古霓虹夜景（轻深色遮罩保可读）—— 固定夜景，无主题切换 */
 html {
   background:
-    linear-gradient(rgba(8, 12, 26, 0.55), rgba(8, 12, 26, 0.55)),
-    url('/images/cyber-bg.jpg') center/cover no-repeat fixed;
+    linear-gradient(rgba(8, 12, 26, 0.35), rgba(8, 12, 26, 0.35)),
+    url('/images/blog-bg.jpg') center/cover no-repeat fixed;
   background-color: #0A0E1A;
-}
-/* 亮色模式：冷调浅蓝 + 科技网格线背景 */
-[data-theme="light"] html {
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 44px, rgba(2, 132, 199, 0.06) 44px, rgba(2, 132, 199, 0.06) 45px),
-    repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(2, 132, 199, 0.06) 44px, rgba(2, 132, 199, 0.06) 45px),
-    linear-gradient(180deg, #EAF2FB, #D8E6F6);
-  background-color: #EAF2FB;
-}
-/* 黑夜模式：交给星空层 */
-[data-theme="dark"] html {
-  background-image: none;
-  background-color: transparent;
 }
 
 /* ② 默认深色赛博配色（打开即是暗色硬核风） */
