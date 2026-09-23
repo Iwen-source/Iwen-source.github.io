@@ -583,3 +583,8 @@ aside img {
   background: rgba(0, 229, 255, 0.3);
   color: #0284C7;
 }
+
+/* ⑪ 左侧栏顶部 LOGO 区（头像+站点标题）隐藏，菜单直接置顶 */
+.l_left header.header {
+  display: none !important;
+}
