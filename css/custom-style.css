@@ -405,3 +405,181 @@ aside img {
   background: rgba(255, 143, 191, 0.3);
   color: #C26E9A;
 }
+
+/* ============================================
+   赛博朋克硬核改造：深蓝黑 + 霓虹青，爷们风
+   （覆盖上方二次元樱花系，后定义优先）
+   ============================================ */
+
+/* ① 默认背景：赛博朋克城市夜景（深色遮罩保可读） */
+html {
+  background:
+    linear-gradient(rgba(8, 12, 26, 0.55), rgba(8, 12, 26, 0.55)),
+    url('/images/cyber-bg.jpg') center/cover no-repeat fixed;
+  background-color: #0A0E1A;
+}
+/* 亮色模式：冷调浅蓝 + 科技网格线背景 */
+[data-theme="light"] html {
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 44px, rgba(2, 132, 199, 0.06) 44px, rgba(2, 132, 199, 0.06) 45px),
+    repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(2, 132, 199, 0.06) 44px, rgba(2, 132, 199, 0.06) 45px),
+    linear-gradient(180deg, #EAF2FB, #D8E6F6);
+  background-color: #EAF2FB;
+}
+/* 黑夜模式：交给星空层 */
+[data-theme="dark"] html {
+  background-image: none;
+  background-color: transparent;
+}
+
+/* ② 默认深色赛博配色（打开即是暗色硬核风） */
+:root {
+  --background: #0A0E1A;
+  --card: #121A2E;
+  --text: #E8F1FF;
+  --text-reverse: #0A0E1A;
+  --text-p1: rgba(232, 241, 255, 0.8);
+  --text-p2: rgba(232, 241, 255, 0.7);
+  --text-p3: rgba(232, 241, 255, 0.55);
+  --text-p4: rgba(232, 241, 255, 0.4);
+  --text-meta: rgba(232, 241, 255, 0.32);
+  --bg-a20: rgba(10, 14, 26, 0.2);
+  --bg-a50: rgba(10, 14, 26, 0.5);
+  --bg-a60: rgba(10, 14, 26, 0.6);
+  --bg-a75: rgba(10, 14, 26, 0.75);
+  --block: rgba(0, 229, 255, 0.08);
+  --block-border: rgba(0, 229, 255, 0.16);
+  --link: #00E5FF;
+  --link-hover: #FF4D6D;
+}
+/* 亮色模式：钢铁蓝白冷调 */
+[data-theme="light"] {
+  --background: #EAF2FB;
+  --card: #FFFFFF;
+  --text: #16223A;
+  --text-reverse: #FFFFFF;
+  --text-p1: rgba(22, 34, 58, 0.8);
+  --text-p2: rgba(22, 34, 58, 0.7);
+  --text-p3: rgba(22, 34, 58, 0.55);
+  --text-p4: rgba(22, 34, 58, 0.4);
+  --text-meta: rgba(22, 34, 58, 0.3);
+  --block: rgba(2, 132, 199, 0.08);
+  --block-border: rgba(2, 132, 199, 0.16);
+  --link: #0284C7;
+  --link-hover: #DB2777;
+}
+/* 黑夜模式：深紫夜空（配合星空层） */
+[data-theme="dark"] {
+  --background: #0B0618;
+  --card: #17102B;
+  --text: #ECE6FF;
+  --text-p1: rgba(236, 230, 255, 0.8);
+  --text-p2: rgba(236, 230, 255, 0.7);
+  --text-p3: rgba(236, 230, 255, 0.55);
+  --text-p4: rgba(236, 230, 255, 0.4);
+  --text-meta: rgba(236, 230, 255, 0.32);
+  --block: rgba(124, 131, 255, 0.10);
+  --block-border: rgba(124, 131, 255, 0.16);
+  --link: #7C83FF;
+  --link-hover: #FF6B9D;
+}
+
+/* ③ 硬朗科技字体：Orbitron 数字/英文 + 中文黑体加粗 */
+@font-face {
+  font-family: 'Orbitron';
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5.0.8/files/orbitron-latin-700-normal.woff2') format('woff2');
+  font-display: swap;
+}
+h1, h2, h3, h4,
+.site-title, .site-name, .logo,
+.menu a, .post-title, .article-title,
+.widget-header, .page-footer,
+button, .btn, #theme-toggle-btn {
+  font-family: 'Orbitron', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ④ 硬朗直角卡片：12px 圆角 + 冷色微阴影 */
+.l_left .widgets,
+.l_right .widgets,
+.l_left aside,
+.l_right aside,
+.leftbar-container,
+.widget-wrapper,
+.post-card,
+.toc {
+  border-radius: 12px !important;
+}
+.widget-wrapper,
+.post-card,
+.leftbar-container {
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.10);
+}
+
+/* ⑤ 侧栏深色半透明（霓虹边） */
+.l_left {
+  background: rgba(10, 14, 26, 0.68);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(0, 229, 255, 0.10);
+}
+[data-theme="light"] .l_left {
+  background: rgba(255, 255, 255, 0.6);
+  border-right-color: rgba(2, 132, 199, 0.10);
+}
+[data-theme="dark"] .l_left {
+  background: rgba(11, 6, 24, 0.6);
+}
+
+/* ⑥ 右侧栏冷调毛玻璃 */
+.l_right {
+  background: rgba(10, 14, 26, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+[data-theme="light"] .l_right {
+  background: rgba(255, 255, 255, 0.45);
+}
+[data-theme="dark"] .l_right {
+  background: rgba(11, 6, 24, 0.4);
+}
+
+/* ⑦ 链接霓虹色 + 卡片 hover 青光 */
+a {
+  color: var(--link);
+}
+a:hover {
+  color: var(--link-hover);
+}
+.post-card:hover {
+  box-shadow: 0 8px 26px rgba(0, 229, 255, 0.22);
+}
+
+/* ⑧ 头像硬朗描边 */
+.l_left img,
+.leftbar-container img,
+aside img {
+  border-radius: 50% !important;
+  border: 2px solid rgba(0, 229, 255, 0.55);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.25);
+}
+
+/* ⑨ 主题切换按钮霓虹渐变 */
+#theme-toggle-btn {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.30), rgba(124, 58, 237, 0.35));
+  border-color: rgba(0, 229, 255, 0.45);
+}
+
+/* ⑩ 滚动条与选中色：霓虹青 */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00E5FF, #7C3AED);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7C3AED, #00E5FF);
+}
+::selection {
+  background: rgba(0, 229, 255, 0.3);
+  color: #0284C7;
+}

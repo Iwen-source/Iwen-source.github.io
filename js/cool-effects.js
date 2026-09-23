@@ -71,16 +71,25 @@
       ctx.stroke();
     }
   }
-  /* 画樱花花瓣：旋转的粉色椭圆 */
-  function drawPetal(ctx, x, y, r, rot, opacity) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(rot);
+  /* 画青色流光粒子：发光圆点 + 上拖尾（赛博数据雨） */
+  function drawTechDrop(ctx, x, y, r, opacity, rgb) {
+    // 上拖尾
     ctx.beginPath();
-    ctx.ellipse(0, 0, r, r * 0.55, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,182,211,' + opacity + ')';
+    ctx.moveTo(x, y - r * 4.5);
+    ctx.lineTo(x, y - r);
+    ctx.strokeStyle = 'rgba(' + rgb + ',' + (opacity * 0.45) + ')';
+    ctx.lineWidth = Math.max(1, r * 0.55);
+    ctx.lineCap = 'round';
+    ctx.stroke();
+    // 主体光点
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(' + rgb + ',' + opacity + ')';
     ctx.fill();
-    ctx.restore();
+  }
+  /* 粒子颜色：亮色模式用深青（浅底可读），默认赛博暗色用霓虹亮青 */
+  function dropRGB() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? '0,110,220' : '0,229,255';
   }
   function drawSnow() {
     sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
@@ -108,9 +117,9 @@
           sctx.fill();
         }
       } else {
-        // 白天：樱花花瓣旋转飘落
-        var pr = f.isBig ? f.r * 1.15 : f.r * 1.6;
-        drawPetal(sctx, f.x, f.y, pr, f.rot, f.opacity * (f.isBig ? 1 : 0.9));
+        // 白天/默认赛博：青色流光粒子雨
+        var pr = f.isBig ? f.r * 1.15 : f.r * 1.3;
+        drawTechDrop(sctx, f.x, f.y, pr, f.opacity, dropRGB());
       }
     }
     requestAnimationFrame(drawSnow);
@@ -159,7 +168,7 @@
 
   /* ========== 1. 顶部渐变进度条 ========== */
   var bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#FF9EC5,#B39DDB,#FF8FBF,#FF9EC5);background-size:300% 100%;z-index:99999;transition:width .15s ease;box-shadow:0 0 12px #FF8FBF;animation:gradientFlow 2s linear infinite;';
+  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#00E5FF,#7C3AED,#00B4FF,#00E5FF);background-size:300% 100%;z-index:99999;transition:width .15s ease;box-shadow:0 0 12px #00E5FF;animation:gradientFlow 2s linear infinite;';
   var style = document.createElement('style');
   style.textContent = '@keyframes gradientFlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}';
   document.head.appendChild(style);
@@ -196,7 +205,7 @@
     lastX = e.clientX;
     lastY = e.clientY;
     if (speed > 3) {
-      trail.push({ x: e.clientX, y: e.clientY, life: 1, hue: 330 + Math.sin(Date.now() / 500) * 40 });
+      trail.push({ x: e.clientX, y: e.clientY, life: 1, hue: 185 + Math.sin(Date.now() / 500) * 30 });
       if (trail.length > MAX_TRAIL) trail.shift();
     }
   });
@@ -247,7 +256,7 @@
   /* ========== 4. 点击波纹扩散 ========== */
   document.addEventListener('click', function (e) {
     var ripple = document.createElement('div');
-    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #FF8FBF;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
+    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #00E5FF;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
     document.body.appendChild(ripple);
     setTimeout(function () { ripple.remove(); }, 600);
   });
@@ -280,15 +289,15 @@
   var titleStyle = document.createElement('style');
   titleStyle.textContent = `
     .article-title, .post-title h1, h1 {
-      background: linear-gradient(135deg, #FF9EC5 0%, #B39DDB 50%, #A78BFA 100%);
+      background: linear-gradient(135deg, #00E5FF 0%, #7C3AED 55%, #FF4D6D 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    ::selection { background: rgba(255,143,191,.3); color: #C26E9A; }
+    ::selection { background: rgba(0,229,255,.3); color: #0284C7; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#FF9EC5,#A78BFA); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#00E5FF,#7C3AED); border-radius: 3px; }
     a:hover { transition: all .2s; }
   `;
   document.head.appendChild(titleStyle);
@@ -307,5 +316,5 @@
     document.documentElement.style.setProperty('--fx-paused', document.hidden ? 'paused' : '');
   });
 
-  console.log('%c🌸 樱花/雪花特效已加载', 'color:#FF8FBF;font-size:13px;font-weight:bold;');
+  console.log('%c⚡ 赛博特效已加载', 'color:#00E5FF;font-size:13px;font-weight:bold;');
 })();

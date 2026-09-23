@@ -4,11 +4,12 @@
 (function () {
   'use strict';
 
-  /* ---------- 当前主题模式 ---------- */
+  /* ---------- 当前主题模式 ----------
+     无 data-theme（默认赛博暗色）与 data-theme="dark" 都算暗色视觉；
+     仅 data-theme="light" 是亮色模式 */
   function currentMode() {
     var t = document.documentElement.getAttribute('data-theme');
-    if (t === 'light' || t === 'dark') return t;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return t === 'light' ? 'light' : 'dark';
   }
 
   /* ---------- 右上角主题切换按钮 ---------- */
@@ -16,11 +17,11 @@
   btn.id = 'theme-toggle-btn';
   btn.title = '切换白天 / 黑夜主题';
   function updateIcon() {
-    btn.textContent = currentMode() === 'dark' ? '☀️' : '🌙';
+    btn.textContent = currentMode() === 'light' ? '🌙' : '☀️';
   }
   updateIcon();
   btn.addEventListener('click', function () {
-    var next = currentMode() === 'dark' ? 'light' : 'dark';
+    var next = currentMode() === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', next);
     try { window.localStorage.setItem('Stellar.theme', next); } catch (e) {}
     updateIcon();
@@ -60,7 +61,8 @@
   function drawNight() {
     var w = night.width;
     var h = night.height;
-    if (currentMode() === 'dark') {
+    // 仅显式黑夜模式绘制星空夜空（默认赛博背景由 CSS 提供，避免覆盖）
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
       // 深蓝夜空渐变
       var g = nctx.createLinearGradient(0, 0, 0, h);
       g.addColorStop(0, '#070b1f');
