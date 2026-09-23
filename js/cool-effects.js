@@ -1,14 +1,25 @@
 /* ============================================
    董雨飞的技术博客 - Stellar主题炫酷特效
-   创新特效：3D卡片倾斜 / 鼠标光轨 / 波纹扩散 / 视差滚动 / 数字动画
+   特效：雪花飘落 / 星空闪烁 / 顶部进度条 / 鼠标光轨 / 波纹扩散 / 视差滚动 / 数字动画 / 3D卡片 / 标题渐变 / 毛玻璃
    ============================================ */
 (function () {
   'use strict';
 
-  /* ========== 0. 雪花飘落动态背景 ========== */
+  /* 雪花与星星颜色随主题深浅自适应 */
+  function isDarkTheme() {
+    var theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark') return true;
+    if (theme === 'light') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function snowRGB() {
+    return isDarkTheme() ? '255,255,255' : '90,110,150';   // 深色→白 浅色→深蓝灰
+  }
+
+  /* ========== 0. 雪花飘落（前景层，不挡交互） ========== */
   var snowCanvas = document.createElement('canvas');
   snowCanvas.id = 'snow-bg';
-  snowCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;';
+  snowCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9996;pointer-events:none;';
   document.documentElement.appendChild(snowCanvas);
   var sctx = snowCanvas.getContext('2d');
   function resizeSnow() {
@@ -19,7 +30,7 @@
   window.addEventListener('resize', resizeSnow);
 
   var flakes = [];
-  var FLAKE_COUNT = 180;
+  var FLAKE_COUNT = Math.min(160, Math.max(60, Math.floor(window.innerWidth / 10)));
   for (var fi = 0; fi < FLAKE_COUNT; fi++) {
     flakes.push({
       x: Math.random() * window.innerWidth,
@@ -33,6 +44,7 @@
   }
   function drawSnow() {
     sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+    var rgb = snowRGB();
     for (var i = 0; i < flakes.length; i++) {
       var f = flakes[i];
       f.sway += f.swaySpeed;
@@ -43,12 +55,52 @@
       if (f.x < -5) f.x = window.innerWidth + 5;
       sctx.beginPath();
       sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      sctx.fillStyle = 'rgba(255,255,255,' + f.opacity + ')';
+      sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
       sctx.fill();
     }
     requestAnimationFrame(drawSnow);
   }
   drawSnow();
+
+  /* ========== 0.5 星空闪烁（前景层，透明背景） ========== */
+  var starCanvas = document.createElement('canvas');
+  starCanvas.id = 'star-bg';
+  starCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9995;pointer-events:none;';
+  document.documentElement.appendChild(starCanvas);
+  var stctx = starCanvas.getContext('2d');
+  function resizeStars() {
+    starCanvas.width = window.innerWidth;
+    starCanvas.height = window.innerHeight;
+  }
+  resizeStars();
+  window.addEventListener('resize', resizeStars);
+
+  var stars = [];
+  var STAR_COUNT = Math.min(90, Math.floor(window.innerWidth / 18));
+  for (var sj = 0; sj < STAR_COUNT; sj++) {
+    stars.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5 + 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.03 + 0.01
+    });
+  }
+  function drawStars() {
+    stctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+    var srgb = snowRGB();
+    for (var s = 0; s < stars.length; s++) {
+      var st = stars[s];
+      st.phase += st.speed;
+      var twinkle = (Math.sin(st.phase) + 1) / 2;
+      stctx.beginPath();
+      stctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      stctx.fillStyle = 'rgba(' + srgb + ',' + (twinkle * 0.7 + 0.1) + ')';
+      stctx.fill();
+    }
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
 
   /* ========== 1. 顶部渐变进度条 ========== */
   var bar = document.createElement('div');
@@ -68,7 +120,7 @@
 
   /* ========== 2. 鼠标光轨（渐变拖尾） ========== */
   var trailCanvas = document.createElement('canvas');
-  trailCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99998;';
+  trailCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9998;';
   document.documentElement.appendChild(trailCanvas);
   var tctx = trailCanvas.getContext('2d');
   function resizeTrail() {
@@ -140,7 +192,7 @@
   /* ========== 4. 点击波纹扩散 ========== */
   document.addEventListener('click', function (e) {
     var ripple = document.createElement('div');
-    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #00d4ff;z-index:99997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
+    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:10px;height:10px;border-radius:50%;border:2px solid #00d4ff;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);animation:rippleExpand .6s ease-out forwards;';
     document.body.appendChild(ripple);
     setTimeout(function () { ripple.remove(); }, 600);
   });
@@ -194,6 +246,11 @@
       nav.style.webkitBackdropFilter = 'blur(16px)';
     }
   }, 1000);
+
+  /* ========== 8. 页面不可见时暂停雪花与星空（省性能） ========== */
+  document.addEventListener('visibilitychange', function () {
+    document.documentElement.style.setProperty('--fx-paused', document.hidden ? 'paused' : '');
+  });
 
   console.log('%c✨ Stellar特效已加载', 'color:#00d4ff;font-size:13px;font-weight:bold;');
 })();
