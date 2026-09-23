@@ -41,8 +41,33 @@
       speedY: Math.random() * 1.2 + 0.4,
       sway: Math.random() * Math.PI * 2,
       swaySpeed: Math.random() * 0.02 + 0.008,
-      opacity: isBig ? (Math.random() * 0.35 + 0.45) : (Math.random() * 0.6 + 0.3) // 大雪花 0.45~0.8 更醒目
+      opacity: isBig ? (Math.random() * 0.35 + 0.45) : (Math.random() * 0.6 + 0.3), // 大雪花 0.45~0.8 更醒目
+      isBig: isBig
     });
+  }
+  /* 画六角形雪花：6 条主枝 + 每枝两条 ±60° 侧枝 */
+  function drawSnowflake(ctx, x, y, r) {
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for (var i = 0; i < 6; i++) {
+      var a = i * Math.PI / 3;
+      var cosA = Math.cos(a), sinA = Math.sin(a);
+      // 主枝
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + cosA * r, y + sinA * r);
+      ctx.stroke();
+      // 侧枝：主枝 65% 处向外分叉（±60°）
+      var bx = x + cosA * r * 0.65;
+      var by = y + sinA * r * 0.65;
+      var l = r * 0.35;
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      ctx.lineTo(bx + Math.cos(a + Math.PI / 3) * l, by + Math.sin(a + Math.PI / 3) * l);
+      ctx.moveTo(bx, by);
+      ctx.lineTo(bx + Math.cos(a - Math.PI / 3) * l, by + Math.sin(a - Math.PI / 3) * l);
+      ctx.stroke();
+    }
   }
   function drawSnow() {
     sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
@@ -55,10 +80,18 @@
       if (f.y > window.innerHeight + 5) { f.y = -5; f.x = Math.random() * window.innerWidth; }
       if (f.x > window.innerWidth + 5) f.x = -5;
       if (f.x < -5) f.x = window.innerWidth + 5;
-      sctx.beginPath();
-      sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
-      sctx.fill();
+      if (f.isBig) {
+        // 大雪花：六角形晶体
+        sctx.strokeStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+        sctx.lineWidth = Math.max(1, f.r * 0.18);
+        drawSnowflake(sctx, f.x, f.y, f.r);
+      } else {
+        // 小雪花：细碎圆点
+        sctx.beginPath();
+        sctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        sctx.fillStyle = 'rgba(' + rgb + ',' + f.opacity + ')';
+        sctx.fill();
+      }
     }
     requestAnimationFrame(drawSnow);
   }
