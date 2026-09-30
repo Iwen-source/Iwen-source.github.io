@@ -27,12 +27,11 @@
 <meta property="og:description" content="今天写金融医疗前端：  Finance.vue：交易表格、风险统计卡片、规则管理  Medical.vue：患者列表、病例详情抽屉   核心实现（真实代码，来自仓库 frontend&#x2F;src&#x2F;api&#x2F;index.js） 12345678910111213141516171819202122232425262728import axios from &#39;axios&#39;import { ElMessage">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-26T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-22T16:25:12.070Z">
+<meta property="article:modified_time" content="2026-09-30T09:02:33.813Z">
 <meta property="article:author" content="JeremyWard(董雨飞)">
 <meta property="article:tag" content="AI Agent">
 <meta property="article:tag" content="AutoGen">
 <meta property="article:tag" content="Chroma">
-<meta property="article:tag" content="Codex">
 <meta property="article:tag" content="DeepSeek">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="ECharts">
@@ -49,7 +48,6 @@
 <meta property="article:tag" content="MongoDB">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="NumPy">
-<meta property="article:tag" content="OpenClaw">
 <meta property="article:tag" content="Pandas">
 <meta property="article:tag" content="Pinecone">
 <meta property="article:tag" content="PyTorch">
@@ -73,7 +71,7 @@
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="前端金融医疗页面">
   
   
-  <meta name="keywords" content="开发日志,万象智枢,SpringBoot,Vue3,AI Agent,LangChain,RAG,Spring Boot,MySQL,Redis,Docker,Flask,PyTorch,XGBoost,WebSocket,ECharts,Vite,Function Calling,LlamaIndex,AutoGen,GPT,DeepSeek,文心一言,Codex,OpenClaw,工具链管理,工作流设计,MongoDB,Pandas,NumPy,Scikit-learn,TensorFlow,React,Element Plus,Milvus,Chroma,Pinecone,Maven,K8s,Python,Java">
+  <meta name="keywords" content="开发日志,万象智枢,SpringBoot,Vue3,AI Agent,LangChain,RAG,Spring Boot,MySQL,Redis,Docker,Flask,PyTorch,XGBoost,WebSocket,ECharts,Vite,Function Calling,LlamaIndex,AutoGen,GPT,DeepSeek,文心一言,工具链管理,工作流设计,MongoDB,Pandas,NumPy,Scikit-learn,TensorFlow,React,Element Plus,Milvus,Chroma,Pinecone,Maven,K8s,Python,Java">
 
   <!-- feed -->
   
@@ -86,7 +84,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-07-26T21:00:00+08:00","dateModified":"2026-09-23T00:25:12+08:00","datePublished":"2025-07-26T21:00:00+08:00","description":"今天写金融医疗前端：\n\nFinance.vue：交易表格、风险统计卡片、规则管理\n\nMedical.vue：患者列表、病例详情抽屉\n\n\n核心实现（真实代码，来自仓库 frontend/src/api/index.js）\n12345678910111213141516171819202122232425262728import axios from 'axios'import { ElMess...","headline":"前端金融医疗页面","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/07/26/2025-07-26-%E5%89%8D%E7%AB%AF%E9%87%91%E8%9E%8D%E5%8C%BB%E7%96%97%E9%A1%B5%E9%9D%A2/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/07/26/2025-07-26-%E5%89%8D%E7%AB%AF%E9%87%91%E8%9E%8D%E5%8C%BB%E7%96%97%E9%A1%B5%E9%9D%A2/","keywords":"开发日志, 万象智枢, SpringBoot, Vue3, AI Agent, LangChain, RAG, Spring Boot, MySQL, Redis, Docker, Flask, PyTorch, XGBoost, WebSocket, ECharts, Vite, Function Calling, LlamaIndex, AutoGen, GPT, DeepSeek, 文心一言, Codex, OpenClaw, 工具链管理, 工作流设计, MongoDB, Pandas, NumPy, Scikit-learn, TensorFlow, React, Element Plus, Milvus, Chroma, Pinecone, Maven, K8s, Python, Java","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JeremyWard(董雨飞)","sameAs":[]},"dateCreated":"2025-07-26T21:00:00+08:00","dateModified":"2026-09-30T17:02:33+08:00","datePublished":"2025-07-26T21:00:00+08:00","description":"今天写金融医疗前端：\n\nFinance.vue：交易表格、风险统计卡片、规则管理\n\nMedical.vue：患者列表、病例详情抽屉\n\n\n核心实现（真实代码，来自仓库 frontend/src/api/index.js）\n12345678910111213141516171819202122232425262728import axios from 'axios'import { ElMess...","headline":"前端金融医疗页面","mainEntityOfPage":{"@type":"WebPage","@id":"https://iwen-source.github.io/2025/07/26/2025-07-26-%E5%89%8D%E7%AB%AF%E9%87%91%E8%9E%8D%E5%8C%BB%E7%96%97%E9%A1%B5%E9%9D%A2/"},"publisher":{"@type":"Organization","name":"JeremyWard(董雨飞)","sameAs":[]},"url":"https://iwen-source.github.io/2025/07/26/2025-07-26-%E5%89%8D%E7%AB%AF%E9%87%91%E8%9E%8D%E5%8C%BB%E7%96%97%E9%A1%B5%E9%9D%A2/","keywords":"开发日志, 万象智枢, SpringBoot, Vue3, AI Agent, LangChain, RAG, Spring Boot, MySQL, Redis, Docker, Flask, PyTorch, XGBoost, WebSocket, ECharts, Vite, Function Calling, LlamaIndex, AutoGen, GPT, DeepSeek, 文心一言, 工具链管理, 工作流设计, MongoDB, Pandas, NumPy, Scikit-learn, TensorFlow, React, Element Plus, Milvus, Chroma, Pinecone, Maven, K8s, Python, Java","thumbnailUrl":"https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg","image":["https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg"]}</script>
   <link rel="stylesheet" href="/css/custom-style.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   <!-- icons.yml 驱动的 CSS 装饰图标 -->
@@ -234,13 +232,13 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/09/30/2026-09-30-%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2%EF%BD%9C%E5%85%A8%E6%A0%88%E6%8E%92%E9%9A%9C%E4%B8%8E%E8%B1%86%E8%8A%BD%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/" title="万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/03/2025-07-03-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E8%B0%83%E7%A0%94%EF%BD%9C%E6%A1%86%E6%9E%B6%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94/" title="技术选型调研｜框架版本对比">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手</span>
+      <span class="ui-collection__title">技术选型调研｜框架版本对比</span>
       
       
     </span>
@@ -288,13 +286,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/03/2025-07-03-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E8%B0%83%E7%A0%94%EF%BD%9C%E6%A1%86%E6%9E%B6%E7%89%88%E6%9C%AC%E5%AF%B9%E6%AF%94/" title="技术选型调研｜框架版本对比">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/27/2025-09-27-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6/" title="项目验收">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">技术选型调研｜框架版本对比</span>
+      <span class="ui-collection__title">项目验收</span>
       
       
     </span>
@@ -306,13 +304,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/08/2025-07-08-%E7%AD%94%E8%BE%A9%E5%87%86%E5%A4%87%EF%BD%9C%E6%BC%94%E7%A4%BA%E8%84%9A%E6%9C%AC%E4%B8%8E%E9%97%AE%E7%AD%94%E9%A2%84%E6%A1%88/" title="答辩准备｜演示脚本与问答预案">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/28/2025-09-28-%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98%E6%80%BB%E7%BB%93/" title="项目复盘总结">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">答辩准备｜演示脚本与问答预案</span>
+      <span class="ui-collection__title">项目复盘总结</span>
       
       
     </span>
@@ -324,13 +322,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/04/2025-04-04-%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5%EF%BD%9C%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86%E8%A7%86%E8%A7%92%E7%9A%84%E8%81%8C%E8%B4%A3%E7%9F%A9%E9%98%B5/" title="团队分工｜项目经理视角的职责矩阵">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/26/2025-09-26-%E5%85%A8%E9%87%8F%E6%B5%8B%E8%AF%95/" title="全量测试">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">团队分工｜项目经理视角的职责矩阵</span>
+      <span class="ui-collection__title">全量测试</span>
       
       
     </span>
@@ -342,13 +340,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/01/2025-04-01-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%EF%BD%9C%E5%A4%9A%E4%BA%BA%E8%81%94%E6%9C%BA%E5%AF%B9%E6%88%98%E7%AB%8B%E9%A1%B9/" title="项目启动｜多人联机对战立项">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/24/2025-09-24-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%96%87%E6%A1%A3/" title="项目结构文档">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">项目启动｜多人联机对战立项</span>
+      <span class="ui-collection__title">项目结构文档</span>
       
       
     </span>
@@ -360,13 +358,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/04/02/2025-04-02-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%EF%BD%9C%E5%AF%B9%E6%88%98%E7%8E%A9%E6%B3%95%E5%AE%9A%E4%B9%89/" title="需求分析｜对战玩法定义">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/25/2025-09-25-%E4%BB%A3%E7%A0%81%E6%B8%85%E7%90%86/" title="代码清理">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">需求分析｜对战玩法定义</span>
+      <span class="ui-collection__title">代码清理</span>
       
       
     </span>
@@ -378,13 +376,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/09/05/2024-09-05-%E7%94%BB%E9%9D%A2%E8%A1%A8%E7%8E%B0%E5%A2%9E%E5%BC%BA%EF%BD%9C%E7%B2%92%E5%AD%90%E4%B8%8E%E5%B1%8F%E5%B9%95%E9%9C%87%E5%8A%A8/" title="画面表现增强｜粒子与屏幕震动">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/22/2025-09-22-Swagger%E5%AE%8C%E5%96%84/" title="Swagger完善">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">画面表现增强｜粒子与屏幕震动</span>
+      <span class="ui-collection__title">Swagger完善</span>
       
       
     </span>
@@ -396,13 +394,13 @@
 
   
     
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/08/22/2024-08-22-Bug%E9%9B%86%E4%B8%AD%E4%BF%AE%E5%A4%8D%EF%BD%9C%E8%81%94%E8%B0%83%E9%97%AE%E9%A2%98%E6%B8%85%E5%8D%95%E6%B8%85%E9%9B%B6/" title="Bug集中修复｜联调问题清单清零">
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/09/23/2025-09-23-README%E7%BC%96%E5%86%99/" title="README编写">
   
   
   
     <span class="ui-collection__content">
       
-      <span class="ui-collection__title">Bug集中修复｜联调问题清单清零</span>
+      <span class="ui-collection__title">README编写</span>
       
       
     </span>
@@ -435,7 +433,7 @@
     <div class="top bread-nav footnote"><div class="top-row"><div class="left" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2%E9%A1%B9%E7%9B%AE/">万象智枢项目</a>
 </div></div><div class="meta-row">
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-07-26T13:00:00.000Z">2025-07-26</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-22T16:25:12.070Z">2026-09-23</time></span></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-07-26T13:00:00.000Z">2025-07-26</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-30T09:02:33.813Z">2026-09-30</time></span></div>
 </div></div>
     
     <div class="bottom only-title">
@@ -463,7 +461,7 @@
 <p><strong>踩坑与解决</strong><br><strong>跨域请求被拦</strong>：前端 5173 端口调后端 8080，浏览器 CORS 报错。解决：后端配置 CORS 允许来源，或在开发环境用 Vite proxy 把 /api 代理到后端。<strong>刷新页面 404</strong>：Vue Router 用 history 模式，刷新后找不到路径。解决：改 hash 模式，或后端做 history fallback 重定向到 index.html。<strong>token 失效体验差</strong>：401 时页面白屏无提示，统一在响应拦截器里跳登录页。</p>
 </article>
 
-<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>万象智枢</a><a class="tag" href="/tags/SpringBoot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SpringBoot</a><a class="tag" href="/tags/Vue3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vue3</a><a class="tag" href="/tags/AI-Agent/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AI Agent</a><a class="tag" href="/tags/LangChain/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LangChain</a><a class="tag" href="/tags/RAG/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>RAG</a><a class="tag" href="/tags/Spring-Boot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Spring Boot</a><a class="tag" href="/tags/MySQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MySQL</a><a class="tag" href="/tags/Redis/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Redis</a><a class="tag" href="/tags/Docker/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Docker</a><a class="tag" href="/tags/Flask/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Flask</a><a class="tag" href="/tags/PyTorch/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>PyTorch</a><a class="tag" href="/tags/XGBoost/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>XGBoost</a><a class="tag" href="/tags/WebSocket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>WebSocket</a><a class="tag" href="/tags/ECharts/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>ECharts</a><a class="tag" href="/tags/Vite/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vite</a><a class="tag" href="/tags/Function-Calling/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Function Calling</a><a class="tag" href="/tags/LlamaIndex/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LlamaIndex</a><a class="tag" href="/tags/AutoGen/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AutoGen</a><a class="tag" href="/tags/GPT/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>GPT</a><a class="tag" href="/tags/DeepSeek/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>DeepSeek</a><a class="tag" href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>文心一言</a><a class="tag" href="/tags/Codex/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Codex</a><a class="tag" href="/tags/OpenClaw/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>OpenClaw</a><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE%E7%AE%A1%E7%90%86/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工具链管理</a><a class="tag" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%AE%BE%E8%AE%A1/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工作流设计</a><a class="tag" href="/tags/MongoDB/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MongoDB</a><a class="tag" href="/tags/Pandas/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pandas</a><a class="tag" href="/tags/NumPy/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>NumPy</a><a class="tag" href="/tags/Scikit-learn/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Scikit-learn</a><a class="tag" href="/tags/TensorFlow/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TensorFlow</a><a class="tag" href="/tags/React/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>React</a><a class="tag" href="/tags/Element-Plus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Element Plus</a><a class="tag" href="/tags/Milvus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Milvus</a><a class="tag" href="/tags/Chroma/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Chroma</a><a class="tag" href="/tags/Pinecone/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pinecone</a><a class="tag" href="/tags/Maven/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Maven</a><a class="tag" href="/tags/K8s/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>K8s</a><a class="tag" href="/tags/Python/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Python</a><a class="tag" href="/tags/Java/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Java</a></div>
+<div class="article-tags slide-up"><a class="tag" href="/tags/%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>开发日志</a><a class="tag" href="/tags/%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>万象智枢</a><a class="tag" href="/tags/SpringBoot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>SpringBoot</a><a class="tag" href="/tags/Vue3/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vue3</a><a class="tag" href="/tags/AI-Agent/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AI Agent</a><a class="tag" href="/tags/LangChain/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LangChain</a><a class="tag" href="/tags/RAG/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>RAG</a><a class="tag" href="/tags/Spring-Boot/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Spring Boot</a><a class="tag" href="/tags/MySQL/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MySQL</a><a class="tag" href="/tags/Redis/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Redis</a><a class="tag" href="/tags/Docker/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Docker</a><a class="tag" href="/tags/Flask/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Flask</a><a class="tag" href="/tags/PyTorch/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>PyTorch</a><a class="tag" href="/tags/XGBoost/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>XGBoost</a><a class="tag" href="/tags/WebSocket/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>WebSocket</a><a class="tag" href="/tags/ECharts/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>ECharts</a><a class="tag" href="/tags/Vite/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Vite</a><a class="tag" href="/tags/Function-Calling/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Function Calling</a><a class="tag" href="/tags/LlamaIndex/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>LlamaIndex</a><a class="tag" href="/tags/AutoGen/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>AutoGen</a><a class="tag" href="/tags/GPT/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>GPT</a><a class="tag" href="/tags/DeepSeek/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>DeepSeek</a><a class="tag" href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>文心一言</a><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE%E7%AE%A1%E7%90%86/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工具链管理</a><a class="tag" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%AE%BE%E8%AE%A1/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>工作流设计</a><a class="tag" href="/tags/MongoDB/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>MongoDB</a><a class="tag" href="/tags/Pandas/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pandas</a><a class="tag" href="/tags/NumPy/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>NumPy</a><a class="tag" href="/tags/Scikit-learn/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Scikit-learn</a><a class="tag" href="/tags/TensorFlow/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>TensorFlow</a><a class="tag" href="/tags/React/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>React</a><a class="tag" href="/tags/Element-Plus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Element Plus</a><a class="tag" href="/tags/Milvus/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Milvus</a><a class="tag" href="/tags/Chroma/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Chroma</a><a class="tag" href="/tags/Pinecone/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Pinecone</a><a class="tag" href="/tags/Maven/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Maven</a><a class="tag" href="/tags/K8s/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>K8s</a><a class="tag" href="/tags/Python/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Python</a><a class="tag" href="/tags/Java/"><svg class="icon" data-icon="default:hashtag" aria-hidden="true"></svg>Java</a></div>
 
 <div class="article-footer slide-up">
     <section id="license">
