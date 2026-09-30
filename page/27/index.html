@@ -190,6 +190,24 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/09/30/2026-09-30-%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2%EF%BD%9C%E5%85%A8%E6%A0%88%E6%8E%92%E9%9A%9C%E4%B8%8E%E8%B1%86%E8%8A%BD%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/" title="万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/06/2025-07-06-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BD%9CJDK17%20+%20Maven%20+%20Node/" title="环境搭建｜JDK17 + Maven + Node">
   
   
@@ -351,24 +369,6 @@
 </a>
 
   
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/07/11/2024-07-11-%E6%9B%B4%E6%96%B0%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%88%86%E7%A6%BB%EF%BD%9C%E9%80%BB%E8%BE%91%E5%B8%A7%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%B8%A7/" title="更新与渲染分离｜逻辑帧与渲染帧">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">更新与渲染分离｜逻辑帧与渲染帧</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
 </div></div>
   
 </widget>
@@ -389,7 +389,10 @@
 
 <div class="navbar top"><div class="navbar-blur"><div class="navbar-container"><nav class="post"><a class="active" href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></nav></div></div></div>
 
-<div class="post-list post"><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2024/07/26/2024-07-26-%E6%95%8C%E4%BA%BAAI%EF%BD%9C%E8%BF%BD%E5%87%BB%E4%B8%8E%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA/">
+<div class="post-list post"><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2024/07/29/2024-07-29-%E9%81%93%E5%85%B7%E7%B3%BB%E7%BB%9F%EF%BD%9C%E9%87%91%E5%B8%81%E4%B8%8E%E5%A2%9E%E7%9B%8A%E6%95%88%E6%9E%9C/">
+<article class="md-text"><h2 class="post-title">道具系统｜金币与增益效果</h2><div class="excerpt"><p>今天实现道具系统，第一波道具：金币、红心（回血）、护盾。
+123456789101112enum class ItemType { COIN, HEART, SHIELD, POWERUP };struct ItemData {    ItemTyp...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2024-07-29T12:00:00.000Z">2024-07-29</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>2D横版闯关游戏</span></span></div></article>
+</a></div><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2024/07/26/2024-07-26-%E6%95%8C%E4%BA%BAAI%EF%BD%9C%E8%BF%BD%E5%87%BB%E4%B8%8E%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA/">
 <article class="md-text"><h2 class="post-title">敌人AI｜追击与攻击行为</h2><div class="excerpt"><p>今天实现第二种敌人：追击型敌人（飞鸟），玩家进入检测范围后追击，碰到就造成伤害。
 12345678class ChaserEnemy : public Enemy {public:    void update(float dt) override;...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2024-07-26T11:00:00.000Z">2024-07-26</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>2D横版闯关游戏</span></span></div></article>
 </a></div><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2024/07/25/2024-07-25-%E6%95%8C%E4%BA%BA%E5%9F%BA%E7%A1%80%EF%BD%9C%E5%B7%A1%E9%80%BBAI%E7%8A%B6%E6%80%81%E6%9C%BA/">
@@ -423,14 +426,10 @@ AABB 重叠检测：
 <article class="md-text"><h2 class="post-title">帧动画｜动画播放器实现</h2><div class="excerpt"><p>今天实现帧动画播放器，让角色”动起来”。
 设计 Animation 类：
 12345678910111213class Animation {public:    struct Frame { SDL_Rect srcRect; float dura...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2024-07-16T12:00:00.000Z">2024-07-16</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>2D横版闯关游戏</span></span></div></article>
-</a></div><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2024/07/15/2024-07-15-%E7%B2%BE%E7%81%B5%E7%B3%BB%E7%BB%9F%EF%BD%9C%E7%BA%B9%E7%90%86%E5%8A%A0%E8%BD%BD%E4%B8%8E%E7%BB%98%E5%88%B6/">
-<article class="md-text"><h2 class="post-title">精灵系统｜纹理加载与绘制</h2><div class="excerpt"><p>迭代2开始，今天实现精灵系统——让游戏对象真正有”形象”。
-Sprite 组件：
-123456789class Sprite {public:    void setTexture(const std::string&amp; path);    v...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2024-07-15T11:30:00.000Z">2024-07-15</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>2D横版闯关游戏</span></span></div></article>
 </a></div></div>
 
   <div class='paginator-wrap dis-select slide-up'>
-  <a class="extend prev" rel="prev" href="/page/26/"><svg class="icon" data-icon="default:arrow-left" aria-hidden="true"></svg></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/28/"><svg class="icon" data-icon="default:arrow-right" aria-hidden="true"></svg></a>
+  <a class="extend prev" rel="prev" href="/page/26/"><svg class="icon" data-icon="default:arrow-left" aria-hidden="true"></svg></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/28/"><svg class="icon" data-icon="default:arrow-right" aria-hidden="true"></svg></a>
   </div>
 
 

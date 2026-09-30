@@ -190,6 +190,24 @@
   <div class="widget-body"><div class="ui-collection" data-layout="list" data-variant="nav" data-density="compact">
   
     
+<a class="ui-collection__item card-hover card-hover--spotlight" href="/2026/09/30/2026-09-30-%E4%B8%87%E8%B1%A1%E6%99%BA%E6%9E%A2%EF%BD%9C%E5%85%A8%E6%A0%88%E6%8E%92%E9%9A%9C%E4%B8%8E%E8%B1%86%E8%8A%BD%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B/" title="万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手">
+  
+  
+  
+    <span class="ui-collection__content">
+      
+      <span class="ui-collection__title">万象智枢｜一次真实的全栈排障：从环境崩溃到自研「豆芽」智能助手</span>
+      
+      
+    </span>
+  
+  
+  
+  
+</a>
+
+  
+    
 <a class="ui-collection__item card-hover card-hover--spotlight" href="/2025/07/06/2025-07-06-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BD%9CJDK17%20+%20Maven%20+%20Node/" title="环境搭建｜JDK17 + Maven + Node">
   
   
@@ -351,24 +369,6 @@
 </a>
 
   
-    
-<a class="ui-collection__item card-hover card-hover--spotlight" href="/2024/07/11/2024-07-11-%E6%9B%B4%E6%96%B0%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%88%86%E7%A6%BB%EF%BD%9C%E9%80%BB%E8%BE%91%E5%B8%A7%E4%B8%8E%E6%B8%B2%E6%9F%93%E5%B8%A7/" title="更新与渲染分离｜逻辑帧与渲染帧">
-  
-  
-  
-    <span class="ui-collection__content">
-      
-      <span class="ui-collection__title">更新与渲染分离｜逻辑帧与渲染帧</span>
-      
-      
-    </span>
-  
-  
-  
-  
-</a>
-
-  
 </div></div>
   
 </widget>
@@ -389,7 +389,26 @@
 
 <div class="navbar top"><div class="navbar-blur"><div class="navbar-container"><nav class="post"><a class="active" href="/">近期发布</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></nav></div></div></div>
 
-<div class="post-list post"><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2025/06/10/2025-06-10-%E4%B8%A2%E5%8C%85%E4%B8%8E%E9%87%8D%E4%BC%A0%EF%BD%9CTCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%A1%AE%E8%AE%A4/">
+<div class="post-list post"><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2025/06/11/2025-06-11-%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6review%EF%BD%9C%E4%B8%89%E5%A4%A7%E9%97%AE%E9%A2%98%E6%80%BB%E6%A0%A1%E9%AA%8C/">
+<article class="md-text"><h2 class="post-title">同步机制review｜三大问题总校验</h2><div class="excerpt"><p>今天做一次同步机制的专项 Review，把用户点名的三大问题（延迟&#x2F;丢包&#x2F;同步错乱）整体校验一遍。
+校验清单：
+
+
+
+问题
+机制
+状态
+
+
+
+延迟
+本地预测 + 30Hz 广播 + TCP_NODELAY
+✅ 操作无感，往返 2ms
+
+
+丢包
+TCP...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2025-06-11T12:00:00.000Z">2025-06-11</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>多人联机对战</span></span></div></article>
+</a></div><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2025/06/10/2025-06-10-%E4%B8%A2%E5%8C%85%E4%B8%8E%E9%87%8D%E4%BC%A0%EF%BD%9CTCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%A1%AE%E8%AE%A4/">
 <article class="md-text"><h2 class="post-title">丢包与重传｜TCP可靠性确认</h2><div class="excerpt"><p>今天专项处理”丢包”问题（用户点名）。虽然 TCP 保证可靠传输，但要验证并理解在什么情况下会出现问题。
 TCP 可靠性机制复习（写进文档）：序号 + ACK + 超时重传 + 快速重传。TCP 不会丢应用层数据，但可能：
 
@@ -430,14 +449,10 @@ SDL 事件采集：
 <article class="md-text"><h2 class="post-title">客户端架构｜网络与渲染分层</h2><div class="excerpt"><p>今天搭客户端整体架构。客户端分层清晰，后面功能才加得动。
 客户端分层：
 1234567891011121314main.c ├── NetClient (网络层) │    ├── connect&#x2F;disconnect │    ├── send_i...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2025-05-26T12:00:00.000Z">2025-05-26</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>多人联机对战</span></span></div></article>
-</a></div><div class="post-card-wrap slide-up"><a class="post-card post card-hover card-hover--spotlight card-hover--tilt" href="/2025/05/23/2025-05-23-%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%EF%BD%9C%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8C%87%E4%BB%A4%E6%B5%81%E8%BD%AC/">
-<article class="md-text"><h2 class="post-title">输入处理｜客户端指令流转</h2><div class="excerpt"><p>今天打通输入通道：客户端按键 → 服务器 → 游戏逻辑的完整链路。
-客户端（采集输入）：
-123456789&#x2F;* 键盘状态（SDL 事件更新） *&#x2F;static uint8_t g_keys[512];void collect_input(Input...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg class="icon" data-icon="default:calendar" aria-hidden="true"></svg><time datetime="2025-05-23T12:00:00.000Z">2025-05-23</time></span><span class="cap breadcrumb"><svg class="icon" data-icon="default:category" aria-hidden="true"></svg><span>多人联机对战</span></span></div></article>
 </a></div></div>
 
   <div class='paginator-wrap dis-select slide-up'>
-  <a class="extend prev" rel="prev" href="/page/18/"><svg class="icon" data-icon="default:arrow-left" aria-hidden="true"></svg></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/20/"><svg class="icon" data-icon="default:arrow-right" aria-hidden="true"></svg></a>
+  <a class="extend prev" rel="prev" href="/page/18/"><svg class="icon" data-icon="default:arrow-left" aria-hidden="true"></svg></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/20/"><svg class="icon" data-icon="default:arrow-right" aria-hidden="true"></svg></a>
   </div>
 
 
